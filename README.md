@@ -168,15 +168,5 @@ loglens/
 
 代码以 MIT 许可开源（见 LICENSE）；`data/` 下日志版权归原作者，遵循 LogHub 的使用要求。
 
-## 10 提交到 GitHub
-
-本地已经是完整仓库（默认分支 main，分阶段提交）。推送到自己的远端即可：
-
-```bash
-cd loglens
-git remote add origin https://github.com/<你的用户名>/loglens.git
-git push -u origin main
-```
-
 推送前建议自查三项：`python -m loglens selftest` 全绿、`python scripts/run_all.py` 能重跑出 results/、
 README 第 4 节的命令逐条可执行。
