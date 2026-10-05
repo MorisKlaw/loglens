@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="20.0" y="24.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#22313f" text-anchor="start" font-weight="bold">Log level distribution</text>
+<rect x="60.0" y="50.0" width="214.0" height="210.0" fill="#9fb8cc"/>
+<text x="167.0" y="276.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">INFO</text>
+<text x="167.0" y="45.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="middle" font-weight="normal">1920</text>
+<rect x="282.0" y="251.2" width="214.0" height="8.8" fill="#e74c3c"/>
+<text x="389.0" y="276.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">WARN</text>
+<text x="389.0" y="246.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="middle" font-weight="normal">80</text>
+<line x1="56.0" y1="260.0" x2="500.0" y2="260.0" stroke="#5b6b7c" stroke-width="1"/>
+<line x1="56.0" y1="50.0" x2="56.0" y2="260.0" stroke="#5b6b7c" stroke-width="1"/>
+</svg>

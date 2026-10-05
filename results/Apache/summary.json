@@ -1,0 +1,292 @@
+{
+  "tool": "loglens",
+  "version": "0.1.0",
+  "generated_at": "2026-10-06T00:44:48",
+  "input": "C:\\Users\\MorisKlaw\\Desktop\\dsh_work\\loglens\\data\\Apache_2k.log",
+  "parse": {
+    "format": "apache",
+    "encoding": "utf-8",
+    "total_lines": 2000,
+    "parsed_records": 2000,
+    "blank_lines": 0,
+    "fallback_lines": 0,
+    "with_timestamp": 2000,
+    "parse_rate": 1.0,
+    "match_rate": 1.0
+  },
+  "templates": {
+    "n_templates": 6,
+    "n_singleton": 0,
+    "top": [
+      {
+        "template_id": 2,
+        "count": 836,
+        "pattern": "jk2_init() Found child <NUM> in scoreboard slot <NUM>"
+      },
+      {
+        "template_id": 0,
+        "count": 569,
+        "pattern": "workerEnv.init() ok <PATH>"
+      },
+      {
+        "template_id": 1,
+        "count": 539,
+        "pattern": "mod_jk child workerEnv in error state <NUM>"
+      },
+      {
+        "template_id": 3,
+        "count": 32,
+        "pattern": "[client <IP>] Directory index forbidden by rule: <PATH>"
+      },
+      {
+        "template_id": 4,
+        "count": 12,
+        "pattern": "jk2_init() Can't find child <NUM> in scoreboard"
+      },
+      {
+        "template_id": 5,
+        "count": 12,
+        "pattern": "mod_jk child init <NUM> -<NUM>"
+      }
+    ]
+  },
+  "features": {
+    "bucket_seconds": 600,
+    "n_buckets": 232,
+    "span_seconds": 138493,
+    "synthetic_time": false
+  },
+  "detection": {
+    "n_anomalies": 362,
+    "per_detector": {
+      "robust_z": 148,
+      "rules": 107,
+      "poisson": 97,
+      "ewma": 8,
+      "novelty": 2
+    },
+    "per_kind": {
+      "template-burst": 148,
+      "rule:error-level": 99,
+      "template-poisson": 97,
+      "rule:jk-error": 8,
+      "ewma-error-volume-up": 4,
+      "ewma-volume-up": 4,
+      "new-template": 2
+    },
+    "n_incidents": 14,
+    "incidents": [
+      {
+        "start": "2005-12-04 16:30:00",
+        "end": "2005-12-04 17:40:00",
+        "duration_seconds": 4800,
+        "score": 6.2,
+        "severity": "high",
+        "detectors": "ewma,novelty,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,ewma-volume-up,new-template,rule:error-level,template-burst,template-poisson",
+        "templates": "T2,T0,T1,T4,T5",
+        "n_anomalies": 48,
+        "summary": "窗口 12-04 16:30:00 ~ 17:40:00（约 1.3 小时）；模板 T2 计数异常（观测 17 次 / 基线 3.55 次）；出现 2 个观察期后的新模板；规则命中 error-level；量级突变 error-volume-up/volume-up；检测器 ewma+novelty+poisson+robust_z+rules",
+        "evidence": "L752 | [Sun Dec 04 17:31:00 2005] [notice] jk2_init() Found child 1501 in scoreboard slot 7 || L753 | [Sun Dec 04 17:31:00 2005] [notice] jk2_init() Found child 1502 in scoreboard slot 6 || L754 | [Sun Dec 04 17:31:00 2005] [notice] jk2_init() Found child 1498 in scoreboard slot 8 || L645 | [Sun Dec 04 16:50:53 2005] [notice] jk2_init() Found child 1308 in scoreboard slot 6 || L646 | [Sun Dec 04 16:50:53 2005] [notice] jk2_init() Found child 1309 in scoreboard slot 7 || L647 | [Sun Dec 04 16:51:26 2005] [notice] jk2_init() Found child 1313 in scoreboard slot 6"
+      },
+      {
+        "start": "2005-12-04 04:50:00",
+        "end": "2005-12-04 05:10:00",
+        "duration_seconds": 1800,
+        "score": 5.7,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,ewma-volume-up,rule:error-level,rule:jk-error,template-burst,template-poisson",
+        "templates": "T0,T1,T2",
+        "n_anomalies": 21,
+        "summary": "窗口 12-04 04:50:00 ~ 05:10:00（约 30 分钟）；模板 T0 计数异常（观测 26 次 / 基线 2.35 次）；规则命中 error-level/jk-error；量级突变 error-volume-up/volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L6 | [Sun Dec 04 04:51:14 2005] [notice] workerEnv.init() ok /etc/httpd/conf/workers2.properties || L9 | [Sun Dec 04 04:51:18 2005] [error] mod_jk child workerEnv in error state 6 || L3 | [Sun Dec 04 04:51:08 2005] [notice] jk2_init() Found child 6725 in scoreboard slot 10 || L4 | [Sun Dec 04 04:51:09 2005] [notice] jk2_init() Found child 6726 in scoreboard slot 8 || L5 | [Sun Dec 04 04:51:09 2005] [notice] jk2_init() Found child 6728 in scoreboard slot 6 || L86 | [Sun Dec 04 05:00:03 2005] [notice] jk2_init() Found child 8560 in scoreboard slot 7"
+      },
+      {
+        "start": "2005-12-04 19:30:00",
+        "end": "2005-12-04 20:40:00",
+        "duration_seconds": 4800,
+        "score": 5.3,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,ewma-volume-up,rule:error-level,template-burst,template-poisson",
+        "templates": "T0,T2,T1",
+        "n_anomalies": 52,
+        "summary": "窗口 12-04 19:30:00 ~ 20:40:00（约 1.3 小时）；模板 T2 计数异常（观测 23 次 / 基线 3.52 次）；规则命中 error-level；量级突变 error-volume-up/volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L943 | [Sun Dec 04 20:20:57 2005] [notice] jk2_init() Found child 1931 in scoreboard slot 7 || L944 | [Sun Dec 04 20:21:09 2005] [notice] jk2_init() Found child 1932 in scoreboard slot 8 || L945 | [Sun Dec 04 20:21:08 2005] [notice] jk2_init() Found child 1933 in scoreboard slot 6 || L983 | [Sun Dec 04 20:30:59 2005] [notice] jk2_init() Found child 1984 in scoreboard slot 10 || L984 | [Sun Dec 04 20:31:35 2005] [notice] jk2_init() Found child 1990 in scoreboard slot 9 || L985 | [Sun Dec 04 20:32:37 2005] [notice] jk2_init() Found child 1999 in scoreboard slot 6"
+      },
+      {
+        "start": "2005-12-04 06:00:00",
+        "end": "2005-12-04 06:20:00",
+        "duration_seconds": 1800,
+        "score": 4.2,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,rule:jk-error,template-burst,template-poisson",
+        "templates": "T2,T0,T1",
+        "n_anomalies": 23,
+        "summary": "窗口 12-04 06:00:00 ~ 06:20:00（约 30 分钟）；模板 T0 计数异常（观测 23 次 / 基线 2.36 次）；规则命中 error-level/jk-error；检测器 poisson+robust_z+rules",
+        "evidence": "L185 | [Sun Dec 04 06:12:37 2005] [notice] workerEnv.init() ok /etc/httpd/conf/workers2.properties || L190 | [Sun Dec 04 06:12:40 2005] [error] mod_jk child workerEnv in error state 6 || L177 | [Sun Dec 04 06:11:11 2005] [notice] jk2_init() Found child 32410 in scoreboard slot 7 || L178 | [Sun Dec 04 06:11:11 2005] [notice] jk2_init() Found child 32411 in scoreboard slot 9 || L179 | [Sun Dec 04 06:12:31 2005] [notice] jk2_init() Found child 32423 in scoreboard slot 9 || L136 | [Sun Dec 04 06:01:00 2005] [notice] jk2_init() Found child 32347 in scoreboard slot 6"
+      },
+      {
+        "start": "2005-12-04 06:40:00",
+        "end": "2005-12-04 07:10:00",
+        "duration_seconds": 2400,
+        "score": 4.2,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,rule:jk-error,template-burst,template-poisson",
+        "templates": "T2,T0,T1",
+        "n_anomalies": 31,
+        "summary": "窗口 12-04 06:40:00 ~ 07:10:00（约 40 分钟）；模板 T0 计数异常（观测 23 次 / 基线 2.36 次）；规则命中 error-level/jk-error；检测器 poisson+robust_z+rules",
+        "evidence": "L379 | [Sun Dec 04 06:51:13 2005] [notice] jk2_init() Found child 32622 in scoreboard slot 7 || L380 | [Sun Dec 04 06:51:14 2005] [notice] jk2_init() Found child 32623 in scoreboard slot 11 || L381 | [Sun Dec 04 06:51:13 2005] [notice] jk2_init() Found child 32624 in scoreboard slot 8 || L294 | [Sun Dec 04 06:40:54 2005] [notice] jk2_init() Found child 32548 in scoreboard slot 9 || L295 | [Sun Dec 04 06:40:54 2005] [notice] jk2_init() Found child 32546 in scoreboard slot 8 || L296 | [Sun Dec 04 06:40:55 2005] [notice] jk2_init() Found child 32547 in scoreboard slot 7"
+      },
+      {
+        "start": "2005-12-05 07:20:00",
+        "end": "2005-12-05 07:50:00",
+        "duration_seconds": 2400,
+        "score": 4.2,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,rule:jk-error,template-burst,template-poisson",
+        "templates": "T0,T1,T2",
+        "n_anomalies": 26,
+        "summary": "窗口 12-05 07:20:00 ~ 07:50:00（约 40 分钟）；模板 T2 计数异常（观测 22 次 / 基线 3.52 次）；规则命中 error-level/jk-error；检测器 poisson+robust_z+rules",
+        "evidence": "L1268 | [Mon Dec 05 07:41:07 2005] [notice] jk2_init() Found child 4974 in scoreboard slot 9 || L1269 | [Mon Dec 05 07:41:35 2005] [notice] jk2_init() Found child 4975 in scoreboard slot 6 || L1270 | [Mon Dec 05 07:41:50 2005] [notice] jk2_init() Found child 4977 in scoreboard slot 8 || L1314 | [Mon Dec 05 07:50:54 2005] [notice] jk2_init() Found child 5017 in scoreboard slot 8 || L1315 | [Mon Dec 05 07:50:54 2005] [notice] jk2_init() Found child 5016 in scoreboard slot 9 || L1316 | [Mon Dec 05 07:51:22 2005] [notice] jk2_init() Found child 5018 in scoreboard slot 6"
+      },
+      {
+        "start": "2005-12-05 13:10:00",
+        "end": "2005-12-05 13:50:00",
+        "duration_seconds": 3000,
+        "score": 4.2,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,rule:jk-error,template-burst,template-poisson",
+        "templates": "T0,T1,T2",
+        "n_anomalies": 31,
+        "summary": "窗口 12-05 13:10:00 ~ 13:50:00（约 50 分钟）；模板 T2 计数异常（观测 23 次 / 基线 3.52 次）；规则命中 error-level/jk-error；检测器 poisson+robust_z+rules",
+        "evidence": "L1639 | [Mon Dec 05 13:31:19 2005] [notice] jk2_init() Found child 5935 in scoreboard slot 9 || L1640 | [Mon Dec 05 13:31:19 2005] [notice] jk2_init() Found child 5936 in scoreboard slot 6 || L1641 | [Mon Dec 05 13:31:53 2005] [notice] jk2_init() Found child 5938 in scoreboard slot 8 || L1729 | [Mon Dec 05 13:51:17 2005] [notice] jk2_init() Found child 6028 in scoreboard slot 9 || L1730 | [Mon Dec 05 13:52:19 2005] [notice] jk2_init() Found child 6036 in scoreboard slot 9 || L1731 | [Mon Dec 05 13:52:19 2005] [notice] jk2_init() Found child 6033 in scoreboard slot 6"
+      },
+      {
+        "start": "2005-12-05 03:40:00",
+        "end": "2005-12-05 04:10:00",
+        "duration_seconds": 2400,
+        "score": 3.8,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,template-burst,template-poisson",
+        "templates": "T2,T0,T1",
+        "n_anomalies": 23,
+        "summary": "窗口 12-05 03:40:00 ~ 04:10:00（约 40 分钟）；模板 T2 计数异常（观测 17 次 / 基线 3.55 次）；规则命中 error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L1127 | [Mon Dec 05 04:00:55 2005] [notice] jk2_init() Found child 2877 in scoreboard slot 10 || L1128 | [Mon Dec 05 04:01:18 2005] [notice] jk2_init() Found child 2883 in scoreboard slot 9 || L1129 | [Mon Dec 05 04:01:18 2005] [notice] jk2_init() Found child 2878 in scoreboard slot 7 || L1076 | [Mon Dec 05 03:40:46 2005] [notice] jk2_init() Found child 2823 in scoreboard slot 9 || L1079 | [Mon Dec 05 03:44:50 2005] [notice] jk2_init() Found child 2824 in scoreboard slot 10 || L1083 | [Mon Dec 05 03:46:38 2005] [notice] jk2_init() Found child 2838 in scoreboard slot 10"
+      },
+      {
+        "start": "2005-12-05 10:10:00",
+        "end": "2005-12-05 11:00:00",
+        "duration_seconds": 3600,
+        "score": 3.8,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,template-burst,template-poisson",
+        "templates": "T2,T0,T1",
+        "n_anomalies": 34,
+        "summary": "窗口 12-05 10:10:00 ~ 11:00:00（约 1.0 小时）；模板 T2 计数异常（观测 18 次 / 基线 3.54 次）；规则命中 error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L1454 | [Mon Dec 05 10:41:14 2005] [notice] jk2_init() Found child 5470 in scoreboard slot 9 || L1455 | [Mon Dec 05 10:41:14 2005] [notice] jk2_init() Found child 5469 in scoreboard slot 8 || L1456 | [Mon Dec 05 10:42:23 2005] [notice] jk2_init() Found child 5474 in scoreboard slot 9 || L1423 | [Mon Dec 05 10:31:40 2005] [notice] jk2_init() Found child 5404 in scoreboard slot 8 || L1424 | [Mon Dec 05 10:31:40 2005] [notice] jk2_init() Found child 5405 in scoreboard slot 9 || L1425 | [Mon Dec 05 10:33:41 2005] [notice] jk2_init() Found child 5418 in scoreboard slot 6"
+      },
+      {
+        "start": "2005-12-05 15:40:00",
+        "end": "2005-12-05 16:30:00",
+        "duration_seconds": 3600,
+        "score": 3.8,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,template-burst,template-poisson",
+        "templates": "T2,T0,T1",
+        "n_anomalies": 19,
+        "summary": "窗口 12-05 15:40:00 ~ 16:30:00（约 1.0 小时）；模板 T2 计数异常（观测 12 次 / 基线 3.57 次）；规则命中 error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L1866 | [Mon Dec 05 16:31:48 2005] [notice] jk2_init() Found child 6420 in scoreboard slot 6 || L1867 | [Mon Dec 05 16:31:49 2005] [notice] jk2_init() Found child 6421 in scoreboard slot 7 || L1868 | [Mon Dec 05 16:31:49 2005] [notice] jk2_init() Found child 6422 in scoreboard slot 8 || L1812 | [Mon Dec 05 16:01:17 2005] [notice] jk2_init() Found child 6310 in scoreboard slot 6 || L1813 | [Mon Dec 05 16:02:00 2005] [notice] jk2_init() Found child 6315 in scoreboard slot 6 || L1814 | [Mon Dec 05 16:02:00 2005] [notice] jk2_init() Found child 6316 in scoreboard slot 7"
+      },
+      {
+        "start": "2005-12-05 03:20:00",
+        "end": "2005-12-05 03:20:00",
+        "duration_seconds": 600,
+        "score": 2.3,
+        "severity": "medium",
+        "detectors": "ewma,rules",
+        "kinds": "ewma-error-volume-up,ewma-volume-up,rule:error-level",
+        "templates": "",
+        "n_anomalies": 3,
+        "summary": "窗口 12-05 03:20:00 ~ 03:20:00（约 10 分钟）；规则命中 error-level；量级突变 error-volume-up/volume-up；检测器 ewma+rules",
+        "evidence": "L1056 | [Mon Dec 05 03:21:02 2005] [error] mod_jk child workerEnv in error state 6 || L1059 | [Mon Dec 05 03:23:24 2005] [error] mod_jk child workerEnv in error state 6 || L1060 | [Mon Dec 05 03:23:24 2005] [error] [client 218.207.61.7] Directory index forbidden by rule: /var/www/html/ || L1054 | [Mon Dec 05 03:21:00 2005] [notice] jk2_init() Found child 2760 in scoreboard slot 6 || L1055 | [Mon Dec 05 03:21:02 2005] [notice] workerEnv.init() ok /etc/httpd/conf/workers2.properties"
+      },
+      {
+        "start": "2005-12-05 05:10:00",
+        "end": "2005-12-05 05:10:00",
+        "duration_seconds": 600,
+        "score": 1.8,
+        "severity": "medium",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,template-burst,template-poisson",
+        "templates": "T2",
+        "n_anomalies": 3,
+        "summary": "窗口 12-05 05:10:00 ~ 05:10:00（约 10 分钟）；模板 T2 计数异常（观测 13 次 / 基线 3.56 次）；规则命中 error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L1190 | [Mon Dec 05 05:11:04 2005] [notice] jk2_init() Found child 4609 in scoreboard slot 7 || L1191 | [Mon Dec 05 05:11:04 2005] [notice] jk2_init() Found child 4608 in scoreboard slot 6 || L1192 | [Mon Dec 05 05:11:34 2005] [notice] jk2_init() Found child 4611 in scoreboard slot 9 || L1204 | [Mon Dec 05 05:15:33 2005] [error] mod_jk child workerEnv in error state 9 || L1208 | [Mon Dec 05 05:15:33 2005] [error] mod_jk child workerEnv in error state 7"
+      },
+      {
+        "start": "2005-12-05 12:30:00",
+        "end": "2005-12-05 12:30:00",
+        "duration_seconds": 600,
+        "score": 1.8,
+        "severity": "medium",
+        "detectors": "robust_z,rules",
+        "kinds": "rule:error-level,template-burst",
+        "templates": "T2",
+        "n_anomalies": 2,
+        "summary": "窗口 12-05 12:30:00 ~ 12:30:00（约 10 分钟）；模板 T2 计数异常（观测 6 次 / 基线 0.0 次）；规则命中 error-level；检测器 robust_z+rules",
+        "evidence": "L1553 | [Mon Dec 05 12:35:57 2005] [notice] jk2_init() Found child 5785 in scoreboard slot 6 || L1554 | [Mon Dec 05 12:35:57 2005] [notice] jk2_init() Found child 5786 in scoreboard slot 7 || L1555 | [Mon Dec 05 12:36:36 2005] [notice] jk2_init() Found child 5790 in scoreboard slot 7 || L1560 | [Mon Dec 05 12:36:39 2005] [error] mod_jk child workerEnv in error state 7 || L1562 | [Mon Dec 05 12:36:39 2005] [error] mod_jk child workerEnv in error state 6"
+      },
+      {
+        "start": "2005-12-05 18:20:00",
+        "end": "2005-12-05 18:20:00",
+        "duration_seconds": 600,
+        "score": 1.8,
+        "severity": "medium",
+        "detectors": "robust_z,rules",
+        "kinds": "rule:error-level,template-burst",
+        "templates": "T2",
+        "n_anomalies": 2,
+        "summary": "窗口 12-05 18:20:00 ~ 18:20:00（约 10 分钟）；模板 T2 计数异常（观测 5 次 / 基线 0.0 次）；规则命中 error-level；检测器 robust_z+rules",
+        "evidence": "L1940 | [Mon Dec 05 18:20:51 2005] [notice] jk2_init() Found child 6670 in scoreboard slot 7 || L1941 | [Mon Dec 05 18:20:51 2005] [notice] jk2_init() Found child 6669 in scoreboard slot 8 || L1946 | [Mon Dec 05 18:26:06 2005] [notice] jk2_init() Found child 6684 in scoreboard slot 7 || L1943 | [Mon Dec 05 18:20:53 2005] [error] mod_jk child workerEnv in error state 6 || L1949 | [Mon Dec 05 18:27:33 2005] [error] mod_jk child workerEnv in error state 6"
+      }
+    ],
+    "config": {
+      "z_threshold": 5.0,
+      "min_template_total": 4,
+      "min_observed": 3,
+      "z_extra_over_median": 3.0,
+      "poisson_alpha": 0.01,
+      "fdr_q": 0.05,
+      "poisson_min_lambda": 0.05,
+      "ewma_lambda": 0.25,
+      "ewma_L": 4.0,
+      "ewma_min_value": 5,
+      "novelty_warmup_frac": 0.1,
+      "novelty_score": 0.6,
+      "novelty_error_score": 1.2,
+      "novelty_score_cap": 3.0,
+      "rule_score": 0.4,
+      "rule_score_cap": 1.2,
+      "level_error_score": 0.5,
+      "enable_rules": true,
+      "enable_z": true,
+      "enable_poisson": true,
+      "enable_ewma": true,
+      "enable_novelty": true,
+      "window_threshold": 1.0,
+      "score_cap": 10.0,
+      "evidence_per_anomaly": 3,
+      "max_anomalies": 400,
+      "top_buckets_per_rule": 8
+    }
+  }
+}

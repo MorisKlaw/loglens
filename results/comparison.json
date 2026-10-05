@@ -1,0 +1,98 @@
+{
+  "HDFS": {
+    "input": "data/HDFS_2k.log",
+    "parse": {
+      "format": "hdfs",
+      "encoding": "utf-8",
+      "total_lines": 2000,
+      "parsed_records": 2000,
+      "blank_lines": 0,
+      "fallback_lines": 0,
+      "with_timestamp": 2000,
+      "parse_rate": 1.0,
+      "match_rate": 1.0
+    },
+    "n_templates": 16,
+    "n_anomalies": 215,
+    "n_incidents": 35,
+    "detectors": [
+      "ewma",
+      "novelty",
+      "poisson",
+      "robust_z",
+      "rules"
+    ]
+  },
+  "Linux": {
+    "input": "data/Linux_2k.log",
+    "parse": {
+      "format": "linux",
+      "encoding": "utf-8",
+      "total_lines": 2000,
+      "parsed_records": 2000,
+      "blank_lines": 0,
+      "fallback_lines": 0,
+      "with_timestamp": 2000,
+      "parse_rate": 1.0,
+      "match_rate": 1.0
+    },
+    "n_templates": 115,
+    "n_anomalies": 381,
+    "n_incidents": 42,
+    "detectors": [
+      "ewma",
+      "novelty",
+      "poisson",
+      "robust_z",
+      "rules"
+    ]
+  },
+  "Apache": {
+    "input": "data/Apache_2k.log",
+    "parse": {
+      "format": "apache",
+      "encoding": "utf-8",
+      "total_lines": 2000,
+      "parsed_records": 2000,
+      "blank_lines": 0,
+      "fallback_lines": 0,
+      "with_timestamp": 2000,
+      "parse_rate": 1.0,
+      "match_rate": 1.0
+    },
+    "n_templates": 6,
+    "n_anomalies": 362,
+    "n_incidents": 14,
+    "detectors": [
+      "ewma",
+      "novelty",
+      "poisson",
+      "robust_z",
+      "rules"
+    ]
+  },
+  "Zookeeper": {
+    "input": "data/Zookeeper_2k.log",
+    "parse": {
+      "format": "zookeeper",
+      "encoding": "utf-8",
+      "total_lines": 2000,
+      "parsed_records": 2000,
+      "blank_lines": 0,
+      "fallback_lines": 0,
+      "with_timestamp": 2000,
+      "parse_rate": 1.0,
+      "match_rate": 1.0
+    },
+    "n_templates": 46,
+    "n_anomalies": 153,
+    "n_incidents": 8,
+    "detectors": [
+      "ewma",
+      "novelty",
+      "poisson",
+      "robust_z",
+      "rules"
+    ]
+  }
+}

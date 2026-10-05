@@ -1,0 +1,392 @@
+{
+  "tool": "loglens",
+  "version": "0.1.0",
+  "generated_at": "2026-10-06T00:44:47",
+  "input": "C:\\Users\\MorisKlaw\\Desktop\\dsh_work\\loglens\\data\\Linux_2k.log",
+  "parse": {
+    "format": "linux",
+    "encoding": "utf-8",
+    "total_lines": 2000,
+    "parsed_records": 2000,
+    "blank_lines": 0,
+    "fallback_lines": 0,
+    "with_timestamp": 2000,
+    "parse_rate": 1.0,
+    "match_rate": 1.0
+  },
+  "templates": {
+    "n_templates": 115,
+    "n_singleton": 94,
+    "top": [
+      {
+        "template_id": 6,
+        "count": 909,
+        "pattern": "connection from <IP> <*> at <*> <*> <NUM> <NUM>:<NUM>:<NUM> <NUM>"
+      },
+      {
+        "template_id": 2,
+        "count": 372,
+        "pattern": "authentication failure; logname= uid=<NUM> euid=<NUM> tty=NODEVssh ruser= <*> <*>"
+      },
+      {
+        "template_id": 3,
+        "count": 123,
+        "pattern": "session opened for user <*> by <*>"
+      },
+      {
+        "template_id": 4,
+        "count": 123,
+        "pattern": "session closed for user <*>"
+      },
+      {
+        "template_id": 0,
+        "count": 118,
+        "pattern": "authentication failure; logname= uid=<NUM> euid=<NUM> <*> ruser= <*>"
+      },
+      {
+        "template_id": 1,
+        "count": 117,
+        "pattern": "check pass; user unknown"
+      },
+      {
+        "template_id": 5,
+        "count": 43,
+        "pattern": "ALERT exited abnormally with [<NUM>]"
+      },
+      {
+        "template_id": 13,
+        "count": 23,
+        "pattern": "Kerberos authentication failed"
+      },
+      {
+        "template_id": 22,
+        "count": 16,
+        "pattern": "notify question section contains no SOA"
+      },
+      {
+        "template_id": 14,
+        "count": 15,
+        "pattern": "Authentication failed from <IP> (<IP>): Software caused connection abort"
+      }
+    ]
+  },
+  "features": {
+    "bucket_seconds": 21600,
+    "n_buckets": 173,
+    "span_seconds": 3713159,
+    "synthetic_time": false
+  },
+  "detection": {
+    "n_anomalies": 381,
+    "per_detector": {
+      "novelty": 107,
+      "robust_z": 101,
+      "poisson": 94,
+      "rules": 64,
+      "ewma": 15
+    },
+    "per_kind": {
+      "new-template": 107,
+      "template-burst": 101,
+      "template-poisson": 94,
+      "rule:error-level": 47,
+      "ewma-error-volume-up": 8,
+      "rule:auth-failure": 8,
+      "rule:unknown-user": 8,
+      "ewma-volume-up": 7,
+      "rule:io-error": 1
+    },
+    "n_incidents": 42,
+    "incidents": [
+      {
+        "start": "2005-06-30 12:00:00",
+        "end": "2005-07-01 06:00:00",
+        "duration_seconds": 86400,
+        "score": 8.7,
+        "severity": "high",
+        "detectors": "ewma,novelty,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,ewma-volume-up,new-template,rule:auth-failure,rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T2,T3,T4,T13,T14",
+        "n_anomalies": 36,
+        "summary": "窗口 06-30 12:00:00 ~ 06:00:00（约 1.0 天）；模板 T3 计数异常（观测 10 次 / 基线 0.66 次）；出现 3 个观察期后的新模板；规则命中 auth-failure/error-level/unknown-user；量级突变 error-volume-up/volume-up；检测器 ewma+novelty+poisson+robust_z+rules",
+        "evidence": "L585 | Jun 30 22:16:32 combo sshd(pam_unix)[19432]: session opened for user test by (uid=509) || L586 | Jun 30 22:16:32 combo sshd(pam_unix)[19431]: session opened for user test by (uid=509) || L587 | Jun 30 22:16:32 combo sshd(pam_unix)[19433]: session opened for user test by (uid=509) || L593 | Jun 30 22:16:32 combo sshd(pam_unix)[19432]: session closed for user test || L594 | Jun 30 22:16:32 combo sshd(pam_unix)[19431]: session closed for user test || L597 | Jun 30 22:16:32 combo sshd(pam_unix)[19434]: session closed for user test"
+      },
+      {
+        "start": "2005-06-22 00:00:00",
+        "end": "2005-06-22 00:00:00",
+        "duration_seconds": 21600,
+        "score": 5.7,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,ewma-volume-up,rule:auth-failure,rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T2,T1,T0",
+        "n_anomalies": 11,
+        "summary": "窗口 06-22 00:00:00 ~ 00:00:00（约 6.0 小时）；模板 T2 计数异常（观测 23 次 / 基线 2.03 次）；规则命中 auth-failure/error-level/unknown-user；量级突变 error-volume-up/volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L199 | Jun 22 03:17:26 combo sshd(pam_unix)[16207]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=n219076184117.netvigator.com  user=root || L200 | Jun 22 03:17:26 combo sshd(pam_unix)[16206]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=n219076184117.netvigator.com  user=root || L201 | Jun 22 03:17:35 combo sshd(pam_unix)[16210]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=n219076184117.netvigator.com  user=root || L227 | Jun 22 04:30:55 combo sshd(pam_unix)[17129]: check pass; user unknown || L229 | Jun 22 04:30:55 combo sshd(pam_unix)[17125]: check pass; user unknown || L231 | Jun 22 04:30:55 combo sshd(pam_unix)[17124]: check pass; user unknown"
+      },
+      {
+        "start": "2005-07-07 06:00:00",
+        "end": "2005-07-07 18:00:00",
+        "duration_seconds": 64800,
+        "score": 5.0,
+        "severity": "high",
+        "detectors": "novelty,poisson,robust_z,rules",
+        "kinds": "new-template,rule:error-level,template-burst,template-poisson",
+        "templates": "T6,T3,T4,T1,T0",
+        "n_anomalies": 16,
+        "summary": "窗口 07-07 06:00:00 ~ 18:00:00（约 18.0 小时）；模板 T6 计数异常（观测 19 次 / 基线 5.17 次）；出现 5 个观察期后的新模板；规则命中 error-level；检测器 novelty+poisson+robust_z+rules",
+        "evidence": "L929 | Jul  7 23:09:45 combo ftpd[14105]: connection from 221.4.102.93 () at Thu Jul  7 23:09:45 2005  || L930 | Jul  7 23:09:45 combo ftpd[14106]: connection from 221.4.102.93 () at Thu Jul  7 23:09:45 2005  || L931 | Jul  7 23:09:45 combo ftpd[14103]: connection from 221.4.102.93 () at Thu Jul  7 23:09:45 2005  || L884 | Jul  7 07:18:12 combo sshd(pam_unix)[12518]: session opened for user test by (uid=509) || L885 | Jul  7 07:18:12 combo sshd(pam_unix)[12519]: session opened for user test by (uid=509) || L887 | Jul  7 07:18:12 combo sshd(pam_unix)[12520]: session opened for user test by (uid=509)"
+      },
+      {
+        "start": "2005-06-17 18:00:00",
+        "end": "2005-06-18 00:00:00",
+        "duration_seconds": 43200,
+        "score": 4.8,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-volume-up,rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T6,T1,T0",
+        "n_anomalies": 11,
+        "summary": "窗口 06-17 18:00:00 ~ 00:00:00（约 12.0 小时）；模板 T1 计数异常（观测 10 次 / 基线 0.62 次）；规则命中 error-level/unknown-user；量级突变 volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L101 | Jun 18 01:30:59 combo sshd(pam_unix)[31201]: check pass; user unknown || L103 | Jun 18 01:30:59 combo sshd(pam_unix)[31199]: check pass; user unknown || L105 | Jun 18 01:30:59 combo sshd(pam_unix)[31198]: check pass; user unknown || L102 | Jun 18 01:30:59 combo sshd(pam_unix)[31201]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=adsl-70-242-75-179.dsl.ksc2mo.swbell.net  || L104 | Jun 18 01:30:59 combo sshd(pam_unix)[31199]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=adsl-70-242-75-179.dsl.ksc2mo.swbell.net  || L106 | Jun 18 01:30:59 combo sshd(pam_unix)[31198]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=adsl-70-242-75-179.dsl.ksc2mo.swbell.net "
+      },
+      {
+        "start": "2005-07-09 06:00:00",
+        "end": "2005-07-10 12:00:00",
+        "duration_seconds": 129600,
+        "score": 4.7,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,ewma-volume-up,rule:auth-failure,rule:error-level,template-burst,template-poisson",
+        "templates": "T6,T2",
+        "n_anomalies": 22,
+        "summary": "窗口 07-09 06:00:00 ~ 12:00:00（约 1.5 天）；模板 T6 计数异常（观测 41 次 / 基线 5.05 次）；规则命中 auth-failure/error-level；量级突变 error-volume-up/volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L1136 | Jul 10 16:01:43 combo sshd(pam_unix)[30530]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=150.183.249.110  user=root || L1137 | Jul 10 16:01:44 combo sshd(pam_unix)[30532]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=150.183.249.110  user=root || L1138 | Jul 10 16:01:45 combo sshd(pam_unix)[30534]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=150.183.249.110  user=root || L985 | Jul  9 12:16:49 combo ftpd[23140]: connection from 211.167.68.59 () at Sat Jul  9 12:16:49 2005  || L986 | Jul  9 12:16:49 combo ftpd[23143]: connection from 211.167.68.59 () at Sat Jul  9 12:16:49 2005  || L987 | Jul  9 12:16:49 combo ftpd[23142]: connection from 211.167.68.59 () at Sat Jul  9 12:16:49 2005 "
+      },
+      {
+        "start": "2005-07-27 12:00:00",
+        "end": "2005-07-27 12:00:00",
+        "duration_seconds": 21600,
+        "score": 4.4,
+        "severity": "high",
+        "detectors": "ewma,novelty,rules",
+        "kinds": "ewma-volume-up,new-template,rule:error-level",
+        "templates": "T62,T63,T76,T25,T26",
+        "n_anomalies": 92,
+        "summary": "窗口 07-27 12:00:00 ~ 12:00:00（约 6.0 小时）；出现 90 个观察期后的新模板；规则命中 error-level；量级突变 volume-up；检测器 ewma+novelty+rules",
+        "evidence": "L1947 | Jul 27 14:41:58 combo kernel: There is already a security framework initialized, register_security failed. || L1948 | Jul 27 14:41:58 combo kernel: Failure registering capabilities with the kernel || L1961 | Jul 27 14:41:58 combo kernel: Enabling unmasked SIMD FPU exception support... done. || L1908 | Jul 27 14:41:57 combo syslogd 1.4.1: restart. || L1909 | Jul 27 14:41:57 combo syslog: syslogd startup succeeded || L1910 | Jul 27 14:41:57 combo kernel: klogd 1.4.1, log source = /proc/kmsg started."
+      },
+      {
+        "start": "2005-06-28 18:00:00",
+        "end": "2005-06-29 12:00:00",
+        "duration_seconds": 86400,
+        "score": 4.2,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:auth-failure,rule:error-level,template-burst,template-poisson",
+        "templates": "T2,T6,T1,T0",
+        "n_anomalies": 20,
+        "summary": "窗口 06-28 18:00:00 ~ 12:00:00（约 1.0 天）；模板 T6 计数异常（观测 23 次 / 基线 5.15 次）；规则命中 auth-failure/error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L422 | Jun 29 03:22:22 combo ftpd[13262]: connection from 61.74.96.178 () at Wed Jun 29 03:22:22 2005  || L423 | Jun 29 03:22:22 combo ftpd[13257]: connection from 61.74.96.178 () at Wed Jun 29 03:22:22 2005  || L424 | Jun 29 03:22:22 combo ftpd[13261]: connection from 61.74.96.178 () at Wed Jun 29 03:22:22 2005  || L460 | Jun 29 10:48:01 combo ftpd[15547]: connection from 208.62.55.75 () at Wed Jun 29 10:48:01 2005  || L461 | Jun 29 10:48:01 combo ftpd[15543]: connection from 208.62.55.75 () at Wed Jun 29 10:48:01 2005  || L462 | Jun 29 10:48:01 combo ftpd[15546]: connection from 208.62.55.75 () at Wed Jun 29 10:48:01 2005 "
+      },
+      {
+        "start": "2005-07-02 00:00:00",
+        "end": "2005-07-02 00:00:00",
+        "duration_seconds": 21600,
+        "score": 4.2,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T1,T0,T3,T4",
+        "n_anomalies": 10,
+        "summary": "窗口 07-02 00:00:00 ~ 00:00:00（约 6.0 小时）；模板 T1 计数异常（观测 10 次 / 基线 0.62 次）；规则命中 error-level/unknown-user；检测器 poisson+robust_z+rules",
+        "evidence": "L690 | Jul  2 04:15:33 combo sshd(pam_unix)[24588]: check pass; user unknown || L692 | Jul  2 04:15:33 combo sshd(pam_unix)[24587]: check pass; user unknown || L694 | Jul  2 04:15:33 combo sshd(pam_unix)[24590]: check pass; user unknown || L691 | Jul  2 04:15:33 combo sshd(pam_unix)[24588]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=zummit.com  || L693 | Jul  2 04:15:33 combo sshd(pam_unix)[24587]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=zummit.com  || L695 | Jul  2 04:15:33 combo sshd(pam_unix)[24590]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=zummit.com "
+      },
+      {
+        "start": "2005-06-20 00:00:00",
+        "end": "2005-06-20 06:00:00",
+        "duration_seconds": 43200,
+        "score": 4.1,
+        "severity": "high",
+        "detectors": "ewma,novelty,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,new-template,rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T6,T1,T0,T11",
+        "n_anomalies": 10,
+        "summary": "窗口 06-20 00:00:00 ~ 06:00:00（约 12.0 小时）；模板 T1 计数异常（观测 10 次 / 基线 0.62 次）；出现 1 个观察期后的新模板；规则命中 error-level/unknown-user；量级突变 error-volume-up；检测器 ewma+novelty+poisson+robust_z+rules",
+        "evidence": "L168 | Jun 20 09:20:05 combo sshd(pam_unix)[10035]: check pass; user unknown || L170 | Jun 20 09:20:05 combo sshd(pam_unix)[10037]: check pass; user unknown || L172 | Jun 20 09:20:05 combo sshd(pam_unix)[10039]: check pass; user unknown || L169 | Jun 20 09:20:05 combo sshd(pam_unix)[10035]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=65.166.159.14  || L171 | Jun 20 09:20:05 combo sshd(pam_unix)[10037]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=65.166.159.14  || L173 | Jun 20 09:20:05 combo sshd(pam_unix)[10039]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=65.166.159.14 "
+      },
+      {
+        "start": "2005-07-18 18:00:00",
+        "end": "2005-07-18 18:00:00",
+        "duration_seconds": 21600,
+        "score": 4.1,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T1,T0",
+        "n_anomalies": 7,
+        "summary": "窗口 07-18 18:00:00 ~ 18:00:00（约 6.0 小时）；模板 T1 计数异常（观测 10 次 / 基线 0.62 次）；规则命中 error-level/unknown-user；量级突变 error-volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L1574 | Jul 18 23:01:25 combo sshd(pam_unix)[28975]: check pass; user unknown || L1576 | Jul 18 23:01:25 combo sshd(pam_unix)[28977]: check pass; user unknown || L1578 | Jul 18 23:01:25 combo sshd(pam_unix)[28980]: check pass; user unknown || L1575 | Jul 18 23:01:25 combo sshd(pam_unix)[28975]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=211-76-104-65.ebix.net.tw  || L1577 | Jul 18 23:01:25 combo sshd(pam_unix)[28977]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=211-76-104-65.ebix.net.tw  || L1579 | Jul 18 23:01:25 combo sshd(pam_unix)[28980]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=211-76-104-65.ebix.net.tw "
+      },
+      {
+        "start": "2005-06-15 12:00:00",
+        "end": "2005-06-15 18:00:00",
+        "duration_seconds": 43200,
+        "score": 3.8,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-volume-up,rule:auth-failure,rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T0,T1",
+        "n_anomalies": 13,
+        "summary": "窗口 06-15 12:00:00 ~ 18:00:00（约 12.0 小时）；模板 T0 计数异常（观测 22 次 / 基线 0.56 次）；规则命中 auth-failure/error-level/unknown-user；量级突变 volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L20 | Jun 15 12:12:34 combo sshd(pam_unix)[23397]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=218.188.2.4  || L22 | Jun 15 12:12:34 combo sshd(pam_unix)[23395]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=218.188.2.4  || L24 | Jun 15 12:12:34 combo sshd(pam_unix)[23404]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=218.188.2.4  || L19 | Jun 15 12:12:34 combo sshd(pam_unix)[23397]: check pass; user unknown || L21 | Jun 15 12:12:34 combo sshd(pam_unix)[23395]: check pass; user unknown || L23 | Jun 15 12:12:34 combo sshd(pam_unix)[23404]: check pass; user unknown"
+      },
+      {
+        "start": "2005-07-05 12:00:00",
+        "end": "2005-07-05 12:00:00",
+        "duration_seconds": 21600,
+        "score": 3.8,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,template-burst,template-poisson",
+        "templates": "T6,T1,T0",
+        "n_anomalies": 7,
+        "summary": "窗口 07-05 12:00:00 ~ 12:00:00（约 6.0 小时）；模板 T6 计数异常（观测 23 次 / 基线 5.15 次）；规则命中 error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L823 | Jul  5 13:52:21 combo ftpd[6590]: connection from 211.72.2.106 () at Tue Jul  5 13:52:21 2005  || L824 | Jul  5 13:52:21 combo ftpd[6582]: connection from 211.72.2.106 () at Tue Jul  5 13:52:21 2005  || L825 | Jul  5 13:52:21 combo ftpd[6580]: connection from 211.72.2.106 () at Tue Jul  5 13:52:21 2005  || L813 | Jul  5 13:36:28 combo sshd(pam_unix)[6552]: check pass; user unknown || L815 | Jul  5 13:36:28 combo sshd(pam_unix)[6554]: check pass; user unknown || L817 | Jul  5 13:36:33 combo sshd(pam_unix)[6556]: check pass; user unknown"
+      },
+      {
+        "start": "2005-06-24 18:00:00",
+        "end": "2005-06-25 06:00:00",
+        "duration_seconds": 64800,
+        "score": 3.2,
+        "severity": "high",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,rule:unknown-user,template-burst,template-poisson",
+        "templates": "T6,T1,T0",
+        "n_anomalies": 10,
+        "summary": "窗口 06-24 18:00:00 ~ 06:00:00（约 18.0 小时）；模板 T1 计数异常（观测 10 次 / 基线 0.62 次）；规则命中 error-level/unknown-user；检测器 poisson+robust_z+rules",
+        "evidence": "L319 | Jun 25 04:41:49 combo sshd(pam_unix)[31031]: check pass; user unknown || L321 | Jun 25 04:41:49 combo sshd(pam_unix)[31035]: check pass; user unknown || L323 | Jun 25 04:41:49 combo sshd(pam_unix)[31034]: check pass; user unknown || L320 | Jun 25 04:41:49 combo sshd(pam_unix)[31031]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=massive.merukuru.org  || L322 | Jun 25 04:41:49 combo sshd(pam_unix)[31035]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=massive.merukuru.org  || L324 | Jun 25 04:41:49 combo sshd(pam_unix)[31034]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=massive.merukuru.org "
+      },
+      {
+        "start": "2005-07-25 06:00:00",
+        "end": "2005-07-26 06:00:00",
+        "duration_seconds": 108000,
+        "score": 3.1,
+        "severity": "high",
+        "detectors": "ewma,novelty,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,new-template,rule:auth-failure,rule:error-level,rule:io-error,template-burst,template-poisson",
+        "templates": "T6,T22,T2,T23,T24",
+        "n_anomalies": 16,
+        "summary": "窗口 07-25 06:00:00 ~ 06:00:00（约 1.2 天）；模板 T2 计数异常（观测 23 次 / 基线 2.03 次）；出现 3 个观察期后的新模板；规则命中 auth-failure/error-level/io-error；量级突变 error-volume-up；检测器 ewma+novelty+poisson+robust_z+rules",
+        "evidence": "L1879 | Jul 26 07:02:27 combo sshd(pam_unix)[28842]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=207.243.167.114  user=root || L1880 | Jul 26 07:02:35 combo sshd(pam_unix)[28844]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=207.243.167.114  user=root || L1881 | Jul 26 07:02:37 combo sshd(pam_unix)[28846]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=207.243.167.114  user=root || L1787 | Jul 25 06:39:18 combo ftpd[24970]: connection from 206.47.209.10 () at Mon Jul 25 06:39:18 2005  || L1788 | Jul 25 06:39:18 combo ftpd[24971]: connection from 206.47.209.10 () at Mon Jul 25 06:39:18 2005  || L1789 | Jul 25 06:39:18 combo ftpd[24972]: connection from 206.47.209.10 () at Mon Jul 25 06:39:18 2005 "
+      },
+      {
+        "start": "2005-07-20 18:00:00",
+        "end": "2005-07-20 18:00:00",
+        "duration_seconds": 21600,
+        "score": 2.8,
+        "severity": "medium",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,template-burst,template-poisson",
+        "templates": "T1,T0",
+        "n_anomalies": 5,
+        "summary": "窗口 07-20 18:00:00 ~ 18:00:00（约 6.0 小时）；模板 T1 计数异常（观测 5 次 / 基线 0.65 次）；规则命中 error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L1614 | Jul 20 23:37:40 combo sshd(pam_unix)[3307]: check pass; user unknown || L1616 | Jul 20 23:37:40 combo sshd(pam_unix)[3306]: check pass; user unknown || L1618 | Jul 20 23:37:40 combo sshd(pam_unix)[3308]: check pass; user unknown || L1615 | Jul 20 23:37:40 combo sshd(pam_unix)[3307]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=218.55.234.102  || L1617 | Jul 20 23:37:40 combo sshd(pam_unix)[3306]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=218.55.234.102  || L1619 | Jul 20 23:37:40 combo sshd(pam_unix)[3308]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=218.55.234.102 "
+      },
+      {
+        "start": "2005-07-23 18:00:00",
+        "end": "2005-07-24 12:00:00",
+        "duration_seconds": 86400,
+        "score": 2.7,
+        "severity": "medium",
+        "detectors": "ewma,novelty,poisson,robust_z,rules",
+        "kinds": "ewma-error-volume-up,new-template,rule:error-level,template-burst,template-poisson",
+        "templates": "T2,T6,T21",
+        "n_anomalies": 11,
+        "summary": "窗口 07-23 18:00:00 ~ 12:00:00（约 1.0 天）；模板 T6 计数异常（观测 23 次 / 基线 5.15 次）；出现 1 个观察期后的新模板；规则命中 error-level；量级突变 error-volume-up；检测器 ewma+novelty+poisson+robust_z+rules",
+        "evidence": "L1725 | Jul 24 02:38:22 combo ftpd[16773]: connection from 84.102.20.2 () at Sun Jul 24 02:38:22 2005  || L1726 | Jul 24 02:38:22 combo ftpd[16789]: connection from 84.102.20.2 () at Sun Jul 24 02:38:22 2005  || L1727 | Jul 24 02:38:22 combo ftpd[16783]: connection from 84.102.20.2 () at Sun Jul 24 02:38:22 2005  || L1763 | Jul 24 13:46:32 combo ftpd[22655]: connection from 211.107.232.1 () at Sun Jul 24 13:46:32 2005  || L1764 | Jul 24 13:46:32 combo ftpd[22652]: connection from 211.107.232.1 () at Sun Jul 24 13:46:32 2005  || L1765 | Jul 24 13:46:32 combo ftpd[22658]: connection from 211.107.232.1 () at Sun Jul 24 13:46:32 2005 "
+      },
+      {
+        "start": "2005-07-17 06:00:00",
+        "end": "2005-07-18 00:00:00",
+        "duration_seconds": 86400,
+        "score": 2.4,
+        "severity": "medium",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-volume-up,rule:error-level,template-burst,template-poisson",
+        "templates": "T6",
+        "n_anomalies": 10,
+        "summary": "窗口 07-17 06:00:00 ~ 00:00:00（约 1.0 天）；模板 T6 计数异常（观测 62 次 / 基线 4.92 次）；规则命中 error-level；量级突变 volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L1368 | Jul 17 06:13:37 combo ftpd[23574]: connection from 83.116.207.11 (aml-sfh-3310b.adsl.wanadoo.nl) at Sun Jul 17 06:13:37 2005  || L1369 | Jul 17 06:13:37 combo ftpd[23575]: connection from 83.116.207.11 (aml-sfh-3310b.adsl.wanadoo.nl) at Sun Jul 17 06:13:37 2005  || L1370 | Jul 17 06:13:37 combo ftpd[23573]: connection from 83.116.207.11 (aml-sfh-3310b.adsl.wanadoo.nl) at Sun Jul 17 06:13:37 2005  || L1433 | Jul 17 12:30:35 combo ftpd[24192]: connection from 207.30.238.8 (host8.topspot.net) at Sun Jul 17 12:30:35 2005  || L1434 | Jul 17 12:30:37 combo ftpd[24193]: connection from 207.30.238.8 (host8.topspot.net) at Sun Jul 17 12:30:37 2005  || L1435 | Jul 17 12:30:42 combo ftpd[24194]: connection from 207.30.238.8 (host8.topspot.net) at Sun Jul 17 12:30:42 2005 "
+      },
+      {
+        "start": "2005-07-04 12:00:00",
+        "end": "2005-07-04 18:00:00",
+        "duration_seconds": 43200,
+        "score": 2.2,
+        "severity": "medium",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:auth-failure,rule:error-level,template-burst,template-poisson",
+        "templates": "T6,T2",
+        "n_anomalies": 6,
+        "summary": "窗口 07-04 12:00:00 ~ 18:00:00（约 12.0 小时）；模板 T6 计数异常（观测 23 次 / 基线 5.15 次）；规则命中 auth-failure/error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L772 | Jul  4 12:52:44 combo ftpd[2839]: connection from 63.197.98.106 (adsl-63-197-98-106.dsl.mtry01.pacbell.net) at Mon Jul  4 12:52:44 2005  || L773 | Jul  4 12:52:44 combo ftpd[2838]: connection from 63.197.98.106 (adsl-63-197-98-106.dsl.mtry01.pacbell.net) at Mon Jul  4 12:52:44 2005  || L774 | Jul  4 12:52:44 combo ftpd[2841]: connection from 63.197.98.106 (adsl-63-197-98-106.dsl.mtry01.pacbell.net) at Mon Jul  4 12:52:44 2005  || L795 | Jul  4 19:15:48 combo sshd(pam_unix)[3378]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220.117.241.87  user=root || L796 | Jul  4 19:15:48 combo sshd(pam_unix)[3380]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220.117.241.87  user=root || L797 | Jul  4 19:15:49 combo sshd(pam_unix)[3382]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220.117.241.87  user=root"
+      },
+      {
+        "start": "2005-06-15 00:00:00",
+        "end": "2005-06-15 00:00:00",
+        "duration_seconds": 21600,
+        "score": 1.8,
+        "severity": "medium",
+        "detectors": "poisson,robust_z,rules",
+        "kinds": "rule:error-level,template-burst,template-poisson",
+        "templates": "T2",
+        "n_anomalies": 3,
+        "summary": "窗口 06-15 00:00:00 ~ 00:00:00（约 6.0 小时）；模板 T2 计数异常（观测 10 次 / 基线 2.1 次）；规则命中 error-level；检测器 poisson+robust_z+rules",
+        "evidence": "L4 | Jun 15 02:04:59 combo sshd(pam_unix)[20882]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root || L5 | Jun 15 02:04:59 combo sshd(pam_unix)[20884]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root || L6 | Jun 15 02:04:59 combo sshd(pam_unix)[20883]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root"
+      },
+      {
+        "start": "2005-06-21 06:00:00",
+        "end": "2005-06-21 06:00:00",
+        "duration_seconds": 21600,
+        "score": 1.8,
+        "severity": "medium",
+        "detectors": "robust_z,rules",
+        "kinds": "rule:error-level,template-burst",
+        "templates": "T2",
+        "n_anomalies": 2,
+        "summary": "窗口 06-21 06:00:00 ~ 06:00:00（约 6.0 小时）；模板 T2 计数异常（观测 6 次 / 基线 0.0 次）；规则命中 error-level；检测器 robust_z+rules",
+        "evidence": "L193 | Jun 21 08:56:36 combo sshd(pam_unix)[14281]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=217.60.212.66  user=guest || L194 | Jun 21 08:56:36 combo sshd(pam_unix)[14279]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=217.60.212.66  user=guest || L195 | Jun 21 08:56:36 combo sshd(pam_unix)[14282]: authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=217.60.212.66  user=guest"
+      }
+    ],
+    "config": {
+      "z_threshold": 5.0,
+      "min_template_total": 4,
+      "min_observed": 3,
+      "z_extra_over_median": 3.0,
+      "poisson_alpha": 0.01,
+      "fdr_q": 0.05,
+      "poisson_min_lambda": 0.05,
+      "ewma_lambda": 0.25,
+      "ewma_L": 4.0,
+      "ewma_min_value": 5,
+      "novelty_warmup_frac": 0.1,
+      "novelty_score": 0.6,
+      "novelty_error_score": 1.2,
+      "novelty_score_cap": 3.0,
+      "rule_score": 0.4,
+      "rule_score_cap": 1.2,
+      "level_error_score": 0.5,
+      "enable_rules": true,
+      "enable_z": true,
+      "enable_poisson": true,
+      "enable_ewma": true,
+      "enable_novelty": true,
+      "window_threshold": 1.0,
+      "score_cap": 10.0,
+      "evidence_per_anomaly": 3,
+      "max_anomalies": 400,
+      "top_buckets_per_rule": 8
+    }
+  }
+}

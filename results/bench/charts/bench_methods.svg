@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="360" viewBox="0 0 980 360">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="20.0" y="24.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#22313f" text-anchor="start" font-weight="bold">Benchmark: precision / recall / F1 by method (injected anomalies)</text>
+<text x="20.0" y="42.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#6b7c8d" text-anchor="start" font-weight="normal">grouped bars; y = score</text>
+<line x1="60.0" y1="284.0" x2="960.0" y2="284.0" stroke="#e6ebf0" stroke-width="1"/>
+<text x="52.0" y="288.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">0.00</text>
+<line x1="60.0" y1="226.5" x2="960.0" y2="226.5" stroke="#e6ebf0" stroke-width="1"/>
+<text x="52.0" y="230.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">0.25</text>
+<line x1="60.0" y1="169.0" x2="960.0" y2="169.0" stroke="#e6ebf0" stroke-width="1"/>
+<text x="52.0" y="173.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">0.50</text>
+<line x1="60.0" y1="111.5" x2="960.0" y2="111.5" stroke="#e6ebf0" stroke-width="1"/>
+<text x="52.0" y="115.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">0.75</text>
+<line x1="60.0" y1="54.0" x2="960.0" y2="54.0" stroke="#e6ebf0" stroke-width="1"/>
+<text x="52.0" y="58.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">1.00</text>
+<line x1="60.0" y1="284.0" x2="960.0" y2="284.0" stroke="#5b6b7c" stroke-width="1"/>
+<line x1="60.0" y1="54.0" x2="60.0" y2="284.0" stroke="#5b6b7c" stroke-width="1"/>
+<rect x="67.0" y="190.1" width="43.3" height="93.9" fill="#2d7dd2"/>
+<rect x="112.3" y="89.9" width="43.3" height="194.1" fill="#e67e22"/>
+<rect x="157.7" y="162.6" width="43.3" height="121.4" fill="#27ae60"/>
+<text x="135.0" y="302.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">ensemble</text>
+<rect x="217.0" y="196.1" width="43.3" height="87.9" fill="#2d7dd2"/>
+<rect x="262.3" y="125.9" width="43.3" height="158.1" fill="#e67e22"/>
+<rect x="307.7" y="177.4" width="43.3" height="106.6" fill="#27ae60"/>
+<text x="285.0" y="302.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">robust_z</text>
+<rect x="367.0" y="164.2" width="43.3" height="119.8" fill="#2d7dd2"/>
+<rect x="412.3" y="236.1" width="43.3" height="47.9" fill="#e67e22"/>
+<rect x="457.7" y="221.9" width="43.3" height="62.1" fill="#27ae60"/>
+<text x="435.0" y="302.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">rules</text>
+<rect x="517.0" y="240.6" width="43.3" height="43.4" fill="#2d7dd2"/>
+<rect x="562.3" y="238.5" width="43.3" height="45.5" fill="#e67e22"/>
+<rect x="607.7" y="240.2" width="43.3" height="43.8" fill="#27ae60"/>
+<text x="585.0" y="302.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">poisson</text>
+<rect x="667.0" y="212.0" width="43.3" height="72.0" fill="#2d7dd2"/>
+<rect x="712.3" y="252.9" width="43.3" height="31.1" fill="#e67e22"/>
+<rect x="757.7" y="244.0" width="43.3" height="40.0" fill="#27ae60"/>
+<text x="735.0" y="302.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">novelty</text>
+<rect x="817.0" y="273.5" width="43.3" height="10.5" fill="#2d7dd2"/>
+<rect x="862.3" y="279.2" width="43.3" height="4.8" fill="#e67e22"/>
+<rect x="907.7" y="277.4" width="43.3" height="6.6" fill="#27ae60"/>
+<text x="885.0" y="302.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="middle" font-weight="normal">ewma</text>
+<rect x="560.0" y="56.0" width="11.0" height="11.0" fill="#2d7dd2"/>
+<text x="576.0" y="65.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#22313f" text-anchor="start" font-weight="normal">precision</text>
+<rect x="680.0" y="56.0" width="11.0" height="11.0" fill="#e67e22"/>
+<text x="696.0" y="65.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#22313f" text-anchor="start" font-weight="normal">recall</text>
+<rect x="800.0" y="56.0" width="11.0" height="11.0" fill="#27ae60"/>
+<text x="816.0" y="65.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#22313f" text-anchor="start" font-weight="normal">f1</text>
+</svg>

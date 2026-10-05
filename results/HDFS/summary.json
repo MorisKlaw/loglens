@@ -1,0 +1,389 @@
+{
+  "tool": "loglens",
+  "version": "0.1.0",
+  "generated_at": "2026-10-06T00:44:46",
+  "input": "C:\\Users\\MorisKlaw\\Desktop\\dsh_work\\loglens\\data\\HDFS_2k.log",
+  "parse": {
+    "format": "hdfs",
+    "encoding": "utf-8",
+    "total_lines": 2000,
+    "parsed_records": 2000,
+    "blank_lines": 0,
+    "fallback_lines": 0,
+    "with_timestamp": 2000,
+    "parse_rate": 1.0,
+    "match_rate": 1.0
+  },
+  "templates": {
+    "n_templates": 16,
+    "n_singleton": 3,
+    "top": [
+      {
+        "template_id": 1,
+        "count": 314,
+        "pattern": "BLOCK* NameSystem.addStoredBlock: blockMap updated: <IP> is added to <BLK> size <NUM>"
+      },
+      {
+        "template_id": 0,
+        "count": 311,
+        "pattern": "PacketResponder <NUM> for block <BLK> terminating"
+      },
+      {
+        "template_id": 2,
+        "count": 292,
+        "pattern": "Received block <BLK> of size <NUM> from /<IP>"
+      },
+      {
+        "template_id": 3,
+        "count": 292,
+        "pattern": "Receiving block <BLK> src: /<IP> dest: /<IP>"
+      },
+      {
+        "template_id": 6,
+        "count": 263,
+        "pattern": "Deleting block <BLK> file <PATH><BLK>"
+      },
+      {
+        "template_id": 9,
+        "count": 224,
+        "pattern": "BLOCK* NameSystem.delete: <BLK> is added to invalidSet of <IP>"
+      },
+      {
+        "template_id": 4,
+        "count": 115,
+        "pattern": "BLOCK* NameSystem.allocateBlock: <PATH> <BLK>"
+      },
+      {
+        "template_id": 7,
+        "count": 80,
+        "pattern": "<IP> Served block <BLK> to /<IP>"
+      },
+      {
+        "template_id": 8,
+        "count": 80,
+        "pattern": "<IP>:Got exception while serving <BLK> to /<IP>:"
+      },
+      {
+        "template_id": 5,
+        "count": 20,
+        "pattern": "Verification succeeded for <BLK>"
+      }
+    ]
+  },
+  "features": {
+    "bucket_seconds": 600,
+    "n_buckets": 228,
+    "span_seconds": 135842,
+    "synthetic_time": false
+  },
+  "detection": {
+    "n_anomalies": 215,
+    "per_detector": {
+      "robust_z": 97,
+      "poisson": 90,
+      "ewma": 13,
+      "rules": 8,
+      "novelty": 7
+    },
+    "per_kind": {
+      "template-burst": 97,
+      "template-poisson": 90,
+      "rule:exception-traceback": 8,
+      "new-template": 7,
+      "ewma-volume-up": 7,
+      "ewma-warn-volume-up": 6
+    },
+    "n_incidents": 35,
+    "incidents": [
+      {
+        "start": "2008-11-10 10:30:00",
+        "end": "2008-11-10 10:30:00",
+        "duration_seconds": 600,
+        "score": 3.6,
+        "severity": "high",
+        "detectors": "ewma,poisson,robust_z",
+        "kinds": "ewma-volume-up,template-burst,template-poisson",
+        "templates": "T6,T9,T2",
+        "n_anomalies": 7,
+        "summary": "窗口 11-10 10:30:00 ~ 10:30:00（约 10 分钟）；模板 T6 计数异常（观测 65 次 / 基线 0.87 次）；量级突变 volume-up；检测器 ewma+poisson+robust_z",
+        "evidence": "L426 | 081110 103201 19 INFO dfs.FSDataset: Deleting block blk_8483848473254499625 file /mnt/hadoop/dfs/data/current/subdir51/blk_8483848473254499625 || L428 | 081110 103257 19 INFO dfs.FSDataset: Deleting block blk_-8898274302731129139 file /mnt/hadoop/dfs/data/current/subdir18/blk_-8898274302731129139 || L429 | 081110 103320 18 INFO dfs.FSDataset: Deleting block blk_-8014701913801168461 file /mnt/hadoop/dfs/data/current/subdir27/blk_-8014701913801168461 || L362 | 081110 103026 34 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-1233005817943453613 is added to invalidSet of 10.251.75.49:50010 || L363 | 081110 103026 34 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-8736461628840265232 is added to invalidSet of 10.251.195.70:50010 || L364 | 081110 103027 34 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_166171721314010075 is added to invalidSet of 10.251.30.85:50010"
+      },
+      {
+        "start": "2008-11-11 06:50:00",
+        "end": "2008-11-11 07:30:00",
+        "duration_seconds": 3000,
+        "score": 3.2,
+        "severity": "high",
+        "detectors": "ewma,novelty,poisson,robust_z",
+        "kinds": "ewma-volume-up,new-template,template-burst,template-poisson",
+        "templates": "T0,T1,T2,T6,T9",
+        "n_anomalies": 18,
+        "summary": "窗口 11-11 06:50:00 ~ 07:30:00（约 50 分钟）；模板 T6 计数异常（观测 22 次 / 基线 1.06 次）；出现 1 个观察期后的新模板；量级突变 volume-up；检测器 ewma+novelty+poisson+robust_z",
+        "evidence": "L1578 | 081111 065229 19 INFO dfs.FSDataset: Deleting block blk_-7423574498760490375 file /mnt/hadoop/dfs/data/current/subdir58/blk_-7423574498760490375 || L1580 | 081111 065258 19 INFO dfs.FSDataset: Deleting block blk_-9169228974826183399 file /mnt/hadoop/dfs/data/current/subdir5/blk_-9169228974826183399 || L1584 | 081111 065418 18 INFO dfs.FSDataset: Deleting block blk_-1306900105984505600 file /mnt/hadoop/dfs/data/current/subdir31/blk_-1306900105984505600 || L1561 | 081111 065205 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-4438918035940270891 is added to invalidSet of 10.251.71.193:50010 || L1562 | 081111 065205 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_5616920288053661280 is added to invalidSet of 10.251.42.9:50010 || L1563 | 081111 065206 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_1815340037591016775 is added to invalidSet of 10.250.9.207:50010"
+      },
+      {
+        "start": "2008-11-09 21:40:00",
+        "end": "2008-11-09 21:50:00",
+        "duration_seconds": 1200,
+        "score": 3.1,
+        "severity": "high",
+        "detectors": "ewma,poisson,rules",
+        "kinds": "ewma-warn-volume-up,rule:exception-traceback,template-poisson",
+        "templates": "T8,T7",
+        "n_anomalies": 6,
+        "summary": "窗口 11-09 21:40:00 ~ 21:50:00（约 20 分钟）；模板 T8 计数异常（观测 4 次 / 基线 0.33 次）；规则命中 exception-traceback；量级突变 warn-volume-up；检测器 ewma+poisson+rules",
+        "evidence": "L78 | 081109 214043 2561 WARN dfs.DataNode$DataXceiver: 10.251.30.85:50010:Got exception while serving blk_-2918118818249673980 to /10.251.90.64: || L79 | 081109 214402 2677 WARN dfs.DataNode$DataXceiver: 10.251.126.255:50010:Got exception while serving blk_8376667364205250596 to /10.251.91.159: || L81 | 081109 214529 2747 WARN dfs.DataNode$DataXceiver: 10.251.123.132:50010:Got exception while serving blk_3763728533434719668 to /10.251.38.214: || L77 | 081109 214009 2594 INFO dfs.DataNode$DataXceiver: 10.250.5.237:50010 Served block blk_3166960787499091856 to /10.251.43.147 || L80 | 081109 214524 2633 INFO dfs.DataNode$DataXceiver: 10.251.71.68:50010 Served block blk_-2794533871450434534 to /10.251.199.150 || L83 | 081109 214919 2899 INFO dfs.DataNode$DataXceiver: 10.251.214.32:50010 Served block blk_-6520030462660619051 to /10.251.215.70"
+      },
+      {
+        "start": "2008-11-10 01:20:00",
+        "end": "2008-11-10 02:00:00",
+        "duration_seconds": 3000,
+        "score": 3.0,
+        "severity": "high",
+        "detectors": "novelty,poisson,robust_z",
+        "kinds": "new-template,template-burst,template-poisson",
+        "templates": "T0,T1,T4,T2,T9",
+        "n_anomalies": 15,
+        "summary": "窗口 11-10 01:20:00 ~ 02:00:00（约 50 分钟）；模板 T0 计数异常（观测 8 次 / 基线 1.33 次）；出现 1 个观察期后的新模板；检测器 novelty+poisson+robust_z",
+        "evidence": "L237 | 081110 014023 5733 INFO dfs.DataNode$PacketResponder: PacketResponder 0 for block blk_4741107979793372752 terminating || L241 | 081110 014138 5832 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_-3802183646922512795 terminating || L244 | 081110 014257 5803 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_1997668456720275587 terminating || L243 | 081110 014207 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/randtxt/_temporary/_task_200811092030_0003_m_001365_0/part-01365. blk_4841101867353115844 || L250 | 081110 014519 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/randtxt/_temporary/_task_200811092030_0003_m_001506_0/part-01506. blk_1104376461837247304 || L253 | 081110 014727 29 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/randtxt/_temporary/_task_200811092030_0003_m_001597_0/part-01597. blk_-591552904934794824"
+      },
+      {
+        "start": "2008-11-11 07:50:00",
+        "end": "2008-11-11 07:50:00",
+        "duration_seconds": 600,
+        "score": 3.0,
+        "severity": "high",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T6,T9,T3,T0",
+        "n_anomalies": 7,
+        "summary": "窗口 11-11 07:50:00 ~ 07:50:00（约 10 分钟）；模板 T6 计数异常（观测 23 次 / 基线 1.06 次）；检测器 poisson+robust_z",
+        "evidence": "L1724 | 081111 075727 19 INFO dfs.FSDataset: Deleting block blk_6888300867578983331 file /mnt/hadoop/dfs/data/current/subdir46/blk_6888300867578983331 || L1726 | 081111 075746 19 INFO dfs.FSDataset: Deleting block blk_-8443921001690182522 file /mnt/hadoop/dfs/data/current/subdir33/blk_-8443921001690182522 || L1728 | 081111 075753 19 INFO dfs.FSDataset: Deleting block blk_-7446091384471755694 file /mnt/hadoop/dfs/data/current/subdir30/blk_-7446091384471755694 || L1710 | 081111 075616 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_4471044334742081825 is added to invalidSet of 10.250.15.198:50010 || L1711 | 081111 075619 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-3671953658029337449 is added to invalidSet of 10.250.14.143:50010 || L1712 | 081111 075623 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-75893538967225087 is added to invalidSet of 10.250.15.198:50010"
+      },
+      {
+        "start": "2008-11-11 08:30:00",
+        "end": "2008-11-11 09:00:00",
+        "duration_seconds": 2400,
+        "score": 2.9,
+        "severity": "medium",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T0,T1,T9,T6,T4",
+        "n_anomalies": 10,
+        "summary": "窗口 11-11 08:30:00 ~ 09:00:00（约 40 分钟）；模板 T9 计数异常（观测 21 次 / 基线 0.89 次）；检测器 poisson+robust_z",
+        "evidence": "L1843 | 081111 085859 30 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_3492869167398569662 is added to invalidSet of 10.250.5.161:50010 || L1844 | 081111 085906 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-3894803026385053344 is added to invalidSet of 10.251.43.21:50010 || L1845 | 081111 085906 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-7873581794069372986 is added to invalidSet of 10.251.194.147:50010 || L1864 | 081111 090008 19 INFO dfs.FSDataset: Deleting block blk_-8792837405349224102 file /mnt/hadoop/dfs/data/current/subdir35/blk_-8792837405349224102 || L1865 | 081111 090031 19 INFO dfs.FSDataset: Deleting block blk_-8131422413299851907 file /mnt/hadoop/dfs/data/current/subdir46/blk_-8131422413299851907 || L1867 | 081111 090056 19 INFO dfs.FSDataset: Deleting block blk_-6177194341369822651 file /mnt/hadoop/dfs/data/current/subdir38/blk_-6177194341369822651"
+      },
+      {
+        "start": "2008-11-10 21:00:00",
+        "end": "2008-11-10 21:00:00",
+        "duration_seconds": 600,
+        "score": 2.6,
+        "severity": "medium",
+        "detectors": "ewma,poisson,robust_z",
+        "kinds": "ewma-volume-up,template-burst,template-poisson",
+        "templates": "T6,T9",
+        "n_anomalies": 5,
+        "summary": "窗口 11-10 21:00:00 ~ 21:00:00（约 10 分钟）；模板 T6 计数异常（观测 49 次 / 基线 0.94 次）；量级突变 volume-up；检测器 ewma+poisson+robust_z",
+        "evidence": "L845 | 081110 210252 18 INFO dfs.FSDataset: Deleting block blk_-8949548167466276130 file /mnt/hadoop/dfs/data/current/subdir2/blk_-8949548167466276130 || L847 | 081110 210259 19 INFO dfs.FSDataset: Deleting block blk_-7548149518969960333 file /mnt/hadoop/dfs/data/current/subdir8/blk_-7548149518969960333 || L848 | 081110 210308 19 INFO dfs.FSDataset: Deleting block blk_-7353572928777348242 file /mnt/hadoop/dfs/data/current/subdir22/blk_-7353572928777348242 || L807 | 081110 210112 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-531469051872229488 is added to invalidSet of 10.251.71.146:50010 || L808 | 081110 210115 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-4657423175636611807 is added to invalidSet of 10.251.193.175:50010 || L809 | 081110 210115 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-6117917602803602155 is added to invalidSet of 10.251.67.211:50010"
+      },
+      {
+        "start": "2008-11-10 21:20:00",
+        "end": "2008-11-10 21:30:00",
+        "duration_seconds": 1200,
+        "score": 2.6,
+        "severity": "medium",
+        "detectors": "novelty,poisson,robust_z",
+        "kinds": "new-template,template-burst,template-poisson",
+        "templates": "T0,T2,T3,T11",
+        "n_anomalies": 7,
+        "summary": "窗口 11-10 21:20:00 ~ 21:30:00（约 20 分钟）；模板 T2 计数异常（观测 5 次 / 基线 1.26 次）；出现 1 个观察期后的新模板；检测器 novelty+poisson+robust_z",
+        "evidence": "L921 | 081110 212234 14745 INFO dfs.DataNode$PacketResponder: Received block blk_6698851413708497072 of size 67108864 from /10.251.74.134 || L922 | 081110 212249 14727 INFO dfs.DataNode$PacketResponder: Received block blk_6730979070070986233 of size 67108864 from /10.251.90.239 || L924 | 081110 212312 15013 INFO dfs.DataNode$PacketResponder: Received block blk_-7056746602297676104 of size 67108864 from /10.251.39.209 || L935 | 081110 213026 15051 INFO dfs.DataNode$DataXceiver: Receiving block blk_7580930377559819562 src: /10.251.110.68:54793 dest: /10.251.110.68:50010 || L938 | 081110 213351 15202 INFO dfs.DataNode$DataXceiver: Receiving block blk_-2901266958756042716 src: /10.251.110.160:35787 dest: /10.251.110.160:50010 || L941 | 081110 213448 15242 INFO dfs.DataNode$DataXceiver: Receiving block blk_-8974021306351083168 src: /10.251.91.15:40699 dest: /10.251.91.15:50010"
+      },
+      {
+        "start": "2008-11-11 02:30:00",
+        "end": "2008-11-11 03:00:00",
+        "duration_seconds": 2400,
+        "score": 2.6,
+        "severity": "medium",
+        "detectors": "ewma,poisson,robust_z",
+        "kinds": "ewma-volume-up,template-burst,template-poisson",
+        "templates": "T1,T6,T9,T0,T3",
+        "n_anomalies": 13,
+        "summary": "窗口 11-11 02:30:00 ~ 03:00:00（约 40 分钟）；模板 T6 计数异常（观测 22 次 / 基线 1.06 次）；量级突变 volume-up；检测器 ewma+poisson+robust_z",
+        "evidence": "L1152 | 081111 023139 19 INFO dfs.FSDataset: Deleting block blk_-7106479503467535906 file /mnt/hadoop/dfs/data/current/subdir32/blk_-7106479503467535906 || L1153 | 081111 023149 19 INFO dfs.FSDataset: Deleting block blk_-7411858598798393933 file /mnt/hadoop/dfs/data/current/subdir24/blk_-7411858598798393933 || L1154 | 081111 023156 19 INFO dfs.FSDataset: Deleting block blk_-5429479049793046826 file /mnt/hadoop/dfs/data/current/subdir34/blk_-5429479049793046826 || L1130 | 081111 023010 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-8887373200836701910 is added to invalidSet of 10.251.193.224:50010 || L1131 | 081111 023011 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-1162676743264290624 is added to invalidSet of 10.251.194.213:50010 || L1132 | 081111 023011 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-5513640508500780385 is added to invalidSet of 10.251.203.179:50010"
+      },
+      {
+        "start": "2008-11-11 04:40:00",
+        "end": "2008-11-11 04:50:00",
+        "duration_seconds": 1200,
+        "score": 2.6,
+        "severity": "medium",
+        "detectors": "ewma,poisson,robust_z",
+        "kinds": "ewma-volume-up,template-burst,template-poisson",
+        "templates": "T6,T9,T1",
+        "n_anomalies": 7,
+        "summary": "窗口 11-11 04:40:00 ~ 04:50:00（约 20 分钟）；模板 T6 计数异常（观测 33 次 / 基线 1.01 次）；量级突变 volume-up；检测器 ewma+poisson+robust_z",
+        "evidence": "L1382 | 081111 044353 19 INFO dfs.FSDataset: Deleting block blk_-1180596628202464893 file /mnt/hadoop/dfs/data/current/subdir52/blk_-1180596628202464893 || L1384 | 081111 044522 18 INFO dfs.FSDataset: Deleting block blk_-8167717961644709843 file /mnt/hadoop/dfs/data/current/blk_-8167717961644709843 || L1385 | 081111 044543 19 INFO dfs.FSDataset: Deleting block blk_-7464161062429228045 file /mnt/hadoop/dfs/data/current/subdir19/blk_-7464161062429228045 || L1356 | 081111 044304 35 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_2259206517962925438 is added to invalidSet of 10.251.215.16:50010 || L1357 | 081111 044304 35 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-3854777877236596649 is added to invalidSet of 10.251.39.160:50010 || L1358 | 081111 044305 35 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-4265150363959543078 is added to invalidSet of 10.251.39.160:50010"
+      },
+      {
+        "start": "2008-11-10 08:00:00",
+        "end": "2008-11-10 08:20:00",
+        "duration_seconds": 1800,
+        "score": 2.3,
+        "severity": "medium",
+        "detectors": "ewma,poisson,robust_z,rules",
+        "kinds": "ewma-volume-up,ewma-warn-volume-up,rule:exception-traceback,template-burst,template-poisson",
+        "templates": "T7,T8",
+        "n_anomalies": 10,
+        "summary": "窗口 11-10 08:00:00 ~ 08:20:00（约 30 分钟）；模板 T7 计数异常（观测 6 次 / 基线 0.33 次）；规则命中 exception-traceback；量级突变 volume-up/warn-volume-up；检测器 ewma+poisson+robust_z+rules",
+        "evidence": "L321 | 081110 080555 8227 INFO dfs.DataNode$DataXceiver: 10.250.11.194:50010 Served block blk_3087787567144441647 to /10.251.91.84 || L322 | 081110 080718 7850 INFO dfs.DataNode$DataXceiver: 10.250.10.100:50010 Served block blk_-3657665801189425193 to /10.250.10.100 || L323 | 081110 080724 8080 INFO dfs.DataNode$DataXceiver: 10.251.74.79:50010 Served block blk_-3457731723401426942 to /10.251.74.79 || L328 | 081110 081044 8125 WARN dfs.DataNode$DataXceiver: 10.251.123.1:50010:Got exception while serving blk_-272707591443354058 to /10.251.198.33: || L329 | 081110 081054 8108 WARN dfs.DataNode$DataXceiver: 10.251.90.239:50010:Got exception while serving blk_-8679916835272129336 to /10.250.15.198: || L330 | 081110 081337 8145 WARN dfs.DataNode$DataXceiver: 10.251.66.102:50010:Got exception while serving blk_6106884317961925960 to /10.251.66.102:"
+      },
+      {
+        "start": "2008-11-10 12:20:00",
+        "end": "2008-11-10 12:30:00",
+        "duration_seconds": 1200,
+        "score": 2.0,
+        "severity": "medium",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T3,T0,T1",
+        "n_anomalies": 4,
+        "summary": "窗口 11-10 12:20:00 ~ 12:30:00（约 20 分钟）；模板 T3 计数异常（观测 6 次 / 基线 1.26 次）；检测器 poisson+robust_z",
+        "evidence": "L649 | 081110 122121 10760 INFO dfs.DataNode$DataXceiver: Receiving block blk_-3673133694834392576 src: /10.251.109.209:49088 dest: /10.251.109.209:50010 || L651 | 081110 122210 11081 INFO dfs.DataNode$DataXceiver: Receiving block blk_6085274723649229095 src: /10.251.127.191:51113 dest: /10.251.127.191:50010 || L658 | 081110 122630 10903 INFO dfs.DataNode$DataXceiver: Receiving block blk_5641239200978828454 src: /10.251.42.9:51808 dest: /10.251.42.9:50010 || L663 | 081110 123008 11210 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_-1490623381339215624 terminating || L674 | 081110 123517 11398 INFO dfs.DataNode$PacketResponder: PacketResponder 2 for block blk_7345322407792942877 terminating || L675 | 081110 123541 11406 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_-8939321760994370713 terminating"
+      },
+      {
+        "start": "2008-11-10 14:30:00",
+        "end": "2008-11-10 15:00:00",
+        "duration_seconds": 2400,
+        "score": 2.0,
+        "severity": "medium",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T3,T1,T2,T0",
+        "n_anomalies": 10,
+        "summary": "窗口 11-10 14:30:00 ~ 15:00:00（约 40 分钟）；模板 T1 计数异常（观测 8 次 / 基线 1.35 次）；检测器 poisson+robust_z",
+        "evidence": "L751 | 081110 150125 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.71.193:50010 is added to blk_7415823309220171667 size 67108864 || L753 | 081110 150238 31 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.38.197:50010 is added to blk_-5427918313707752877 size 67108864 || L756 | 081110 150316 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.105.189:50010 is added to blk_-3275237990609680332 size 67108864 || L704 | 081110 143222 12360 INFO dfs.DataNode$DataXceiver: Receiving block blk_6107935679779418195 src: /10.251.43.115:55925 dest: /10.251.43.115:50010 || L708 | 081110 143353 12141 INFO dfs.DataNode$DataXceiver: Receiving block blk_4959462704623252283 src: /10.251.125.174:44166 dest: /10.251.125.174:50010 || L710 | 081110 143551 12299 INFO dfs.DataNode$DataXceiver: Receiving block blk_-3261177124784025140 src: /10.251.29.239:43937 dest: /10.251.29.239:50010"
+      },
+      {
+        "start": "2008-11-10 21:50:00",
+        "end": "2008-11-10 23:00:00",
+        "duration_seconds": 4800,
+        "score": 2.0,
+        "severity": "medium",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T2,T0,T3,T1,T9",
+        "n_anomalies": 23,
+        "summary": "窗口 11-10 21:50:00 ~ 23:00:00（约 1.3 小时）；模板 T9 计数异常（观测 19 次 / 基线 0.9 次）；检测器 poisson+robust_z",
+        "evidence": "L983 | 081110 220626 34 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_8981795097778421111 is added to invalidSet of 10.251.194.129:50010 || L984 | 081110 220630 34 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_1979447750586388860 is added to invalidSet of 10.251.215.192:50010 || L985 | 081110 220636 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_3332848207645320273 is added to invalidSet of 10.251.90.64:50010 || L1002 | 081110 220708 19 INFO dfs.FSDataset: Deleting block blk_-6891122177443047531 file /mnt/hadoop/dfs/data/current/subdir36/blk_-6891122177443047531 || L1004 | 081110 220749 19 INFO dfs.FSDataset: Deleting block blk_-9171930401624803515 file /mnt/hadoop/dfs/data/current/subdir56/blk_-9171930401624803515 || L1006 | 081110 220804 19 INFO dfs.FSDataset: Deleting block blk_-8294986551316947211 file /mnt/hadoop/dfs/data/current/subdir34/blk_-8294986551316947211"
+      },
+      {
+        "start": "2008-11-11 03:50:00",
+        "end": "2008-11-11 04:20:00",
+        "duration_seconds": 2400,
+        "score": 2.0,
+        "severity": "medium",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T0,T1,T3",
+        "n_anomalies": 8,
+        "summary": "窗口 11-11 03:50:00 ~ 04:20:00（约 40 分钟）；模板 T0 计数异常（观测 7 次 / 基线 1.34 次）；检测器 poisson+robust_z",
+        "evidence": "L1296 | 081111 040246 19412 INFO dfs.DataNode$PacketResponder: PacketResponder 2 for block blk_-4068751061953213467 terminating || L1297 | 081111 040251 19350 INFO dfs.DataNode$PacketResponder: PacketResponder 0 for block blk_-3025440686907267472 terminating || L1299 | 081111 040405 19541 INFO dfs.DataNode$PacketResponder: PacketResponder 2 for block blk_8422946850755720617 terminating || L1318 | 081111 041252 19248 INFO dfs.DataNode$DataXceiver: Receiving block blk_-1133573997287815203 src: /10.251.123.195:59430 dest: /10.251.123.195:50010 || L1323 | 081111 041532 19592 INFO dfs.DataNode$DataXceiver: Receiving block blk_1074754942323612586 src: /10.251.202.181:45279 dest: /10.251.202.181:50010 || L1324 | 081111 041534 19842 INFO dfs.DataNode$DataXceiver: Receiving block blk_-7727864185516010230 src: /10.251.43.192:36039 dest: /10.251.43.192:50010"
+      },
+      {
+        "start": "2008-11-11 09:30:00",
+        "end": "2008-11-11 09:50:00",
+        "duration_seconds": 1800,
+        "score": 2.0,
+        "severity": "medium",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T3,T0,T2,T1",
+        "n_anomalies": 7,
+        "summary": "窗口 11-11 09:30:00 ~ 09:50:00（约 30 分钟）；模板 T1 计数异常（观测 10 次 / 基线 1.34 次）；检测器 poisson+robust_z",
+        "evidence": "L1950 | 081111 095035 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.214.67:50010 is added to blk_-8428590803682810851 size 67108864 || L1952 | 081111 095238 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.123.132:50010 is added to blk_8527475857502481768 size 67108864 || L1955 | 081111 095535 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.127.243:50010 is added to blk_1793140687921032046 size 67108864 || L1936 | 081111 094319 25340 INFO dfs.DataNode$PacketResponder: Received block blk_-5785220384376578831 of size 67108864 from /10.251.203.80 || L1937 | 081111 094331 26028 INFO dfs.DataNode$PacketResponder: Received block blk_3386670145292909259 of size 67108864 from /10.251.110.68 || L1940 | 081111 094633 25926 INFO dfs.DataNode$PacketResponder: Received block blk_-5385105076403314787 of size 67108864 from /10.251.42.9"
+      },
+      {
+        "start": "2008-11-11 06:30:00",
+        "end": "2008-11-11 06:30:00",
+        "duration_seconds": 600,
+        "score": 1.9,
+        "severity": "medium",
+        "detectors": "poisson,robust_z",
+        "kinds": "template-burst,template-poisson",
+        "templates": "T1,T4",
+        "n_anomalies": 3,
+        "summary": "窗口 11-11 06:30:00 ~ 06:30:00（约 10 分钟）；模板 T1 计数异常（观测 7 次 / 基线 1.35 次）；检测器 poisson+robust_z",
+        "evidence": "L1538 | 081111 063305 30 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.214.67:50010 is added to blk_-5961895238114806886 size 28508403 || L1539 | 081111 063316 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.107.19:50010 is added to blk_-2654726224018724510 size 67108864 || L1540 | 081111 063323 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.67.225:50010 is added to blk_-3955287039966096707 size 67108864 || L1534 | 081111 063138 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/randtxt5/_temporary/_task_200811101024_0012_m_001529_0/part-01529. blk_-826920518336899809 || L1542 | 081111 063413 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/randtxt5/_temporary/_task_200811101024_0012_m_001726_0/part-01726. blk_1858805942071850133 || L1543 | 081111 063451 31 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/randtxt5/_temporary/_task_200811101024_0012_m_001554_0/part-01554. blk_5183831565578080242"
+      },
+      {
+        "start": "2008-11-10 17:50:00",
+        "end": "2008-11-10 17:50:00",
+        "duration_seconds": 600,
+        "score": 1.8,
+        "severity": "medium",
+        "detectors": "ewma,poisson",
+        "kinds": "ewma-warn-volume-up,template-poisson",
+        "templates": "T8",
+        "n_anomalies": 2,
+        "summary": "窗口 11-10 17:50:00 ~ 17:50:00（约 10 分钟）；模板 T8 计数异常（观测 3 次 / 基线 0.34 次）；量级突变 warn-volume-up；检测器 ewma+poisson",
+        "evidence": "L791 | 081110 175354 14021 WARN dfs.DataNode$DataXceiver: 10.250.11.53:50010:Got exception while serving blk_-7125370327234065733 to /10.250.15.240: || L793 | 081110 175818 13937 WARN dfs.DataNode$DataXceiver: 10.250.10.223:50010:Got exception while serving blk_8478683141242372735 to /10.251.70.5: || L795 | 081110 175934 12298 WARN dfs.DataNode$DataXceiver: 10.251.107.50:50010:Got exception while serving blk_-4737948505610037427 to /10.251.75.79:"
+      },
+      {
+        "start": "2008-11-10 07:00:00",
+        "end": "2008-11-10 07:00:00",
+        "duration_seconds": 600,
+        "score": 1.5,
+        "severity": "medium",
+        "detectors": "ewma,poisson",
+        "kinds": "ewma-volume-up,template-poisson",
+        "templates": "T7",
+        "n_anomalies": 2,
+        "summary": "窗口 11-10 07:00:00 ~ 07:00:00（约 10 分钟）；模板 T7 计数异常（观测 4 次 / 基线 0.33 次）；量级突变 volume-up；检测器 ewma+poisson",
+        "evidence": "L311 | 081110 070334 7327 INFO dfs.DataNode$DataXceiver: 10.251.111.37:50010 Served block blk_-6050976999174805557 to /10.251.111.37 || L312 | 081110 070347 7574 INFO dfs.DataNode$DataXceiver: 10.250.10.6:50010 Served block blk_1598414622053793245 to /10.251.90.239 || L313 | 081110 070614 7513 INFO dfs.DataNode$DataXceiver: 10.250.19.16:50010 Served block blk_-7837339190764609698 to /10.251.197.161 || L310 | 081110 070326 7430 WARN dfs.DataNode$DataXceiver: 10.251.75.228:50010:Got exception while serving blk_-7680599654910200999 to /10.251.75.228:"
+      },
+      {
+        "start": "2008-11-09 22:20:00",
+        "end": "2008-11-09 22:20:00",
+        "duration_seconds": 600,
+        "score": 1.3,
+        "severity": "low",
+        "detectors": "poisson,rules",
+        "kinds": "rule:exception-traceback,template-poisson",
+        "templates": "T8",
+        "n_anomalies": 2,
+        "summary": "窗口 11-09 22:20:00 ~ 22:20:00（约 10 分钟）；模板 T8 计数异常（观测 4 次 / 基线 0.33 次）；规则命中 exception-traceback；检测器 poisson+rules",
+        "evidence": "L93 | 081109 222040 3463 WARN dfs.DataNode$DataXceiver: 10.251.71.146:50010:Got exception while serving blk_-2032740670708110312 to /10.251.197.161: || L94 | 081109 222041 3390 WARN dfs.DataNode$DataXceiver: 10.251.67.113:50010:Got exception while serving blk_-62891505109755100 to /10.250.7.96: || L95 | 081109 222342 3462 WARN dfs.DataNode$DataXceiver: 10.251.74.79:50010:Got exception while serving blk_2244903517044280975 to /10.251.74.134:"
+      }
+    ],
+    "config": {
+      "z_threshold": 5.0,
+      "min_template_total": 4,
+      "min_observed": 3,
+      "z_extra_over_median": 3.0,
+      "poisson_alpha": 0.01,
+      "fdr_q": 0.05,
+      "poisson_min_lambda": 0.05,
+      "ewma_lambda": 0.25,
+      "ewma_L": 4.0,
+      "ewma_min_value": 5,
+      "novelty_warmup_frac": 0.1,
+      "novelty_score": 0.6,
+      "novelty_error_score": 1.2,
+      "novelty_score_cap": 3.0,
+      "rule_score": 0.4,
+      "rule_score_cap": 1.2,
+      "level_error_score": 0.5,
+      "enable_rules": true,
+      "enable_z": true,
+      "enable_poisson": true,
+      "enable_ewma": true,
+      "enable_novelty": true,
+      "window_threshold": 1.0,
+      "score_cap": 10.0,
+      "evidence_per_anomaly": 3,
+      "max_anomalies": 400,
+      "top_buckets_per_rule": 8
+    }
+  }
+}

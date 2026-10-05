@@ -1,0 +1,7 @@
+﻿template_id,count,wildcards,is_constant,main_level,first_seen,last_seen,top_source,pattern,example
+2,836,2,False,NOTICE,2005-12-04 04:51:08,2005-12-05 19:15:55,httpd,jk2_init() Found child <NUM> in scoreboard slot <NUM>,[Sun Dec 04 04:51:08 2005] [notice] jk2_init() Found child 6725 in scoreboard slot 10
+0,569,1,False,NOTICE,2005-12-04 04:47:44,2005-12-05 19:15:57,httpd,workerEnv.init() ok <PATH>,[Sun Dec 04 04:47:44 2005] [notice] workerEnv.init() ok /etc/httpd/conf/workers2.properties
+1,539,1,False,ERROR,2005-12-04 04:47:44,2005-12-05 19:15:57,httpd,mod_jk child workerEnv in error state <NUM>,[Sun Dec 04 04:47:44 2005] [error] mod_jk child workerEnv in error state 6
+3,32,1,False,ERROR,2005-12-04 05:15:09,2005-12-05 19:14:09,httpd,[client <IP>] Directory index forbidden by rule: <PATH>,[Sun Dec 04 05:15:09 2005] [error] [client 222.166.160.184] Directory index forbidden by rule: /var/www/html/
+4,12,1,False,ERROR,2005-12-04 17:43:08,2005-12-05 11:06:52,httpd,jk2_init() Can't find child <NUM> in scoreboard,[Sun Dec 04 17:43:08 2005] [error] jk2_init() Can't find child 1566 in scoreboard
+5,12,1,False,ERROR,2005-12-04 17:43:12,2005-12-05 11:06:52,httpd,mod_jk child init <NUM> -<NUM>,[Sun Dec 04 17:43:12 2005] [error] mod_jk child init 1 -2

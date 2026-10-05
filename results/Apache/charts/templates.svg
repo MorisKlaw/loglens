@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="222" viewBox="0 0 1000 222">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="20.0" y="24.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#22313f" text-anchor="start" font-weight="bold">Top log templates by frequency</text>
+<text x="20.0" y="42.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#6b7c8d" text-anchor="start" font-weight="normal">bar length = occurrence count; label = masked template pattern</text>
+<rect x="250.0" y="56.0" width="660.0" height="16.0" fill="#2d7dd2"/>
+<text x="242.0" y="67.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">T2</text>
+<text x="916.0" y="67.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">836</text>
+<text x="256.0" y="67.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="start" font-weight="normal">jk2_init() Found child &lt;NUM&gt; in scoreboard ...</text>
+<rect x="250.0" y="78.0" width="449.2" height="16.0" fill="#2d7dd2"/>
+<text x="242.0" y="89.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">T0</text>
+<text x="705.2" y="89.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">569</text>
+<text x="256.0" y="89.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="start" font-weight="normal">workerEnv.init() ok &lt;PATH&gt;</text>
+<rect x="250.0" y="100.0" width="425.5" height="16.0" fill="#2d7dd2"/>
+<text x="242.0" y="111.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">T1</text>
+<text x="681.5" y="111.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">539</text>
+<text x="256.0" y="111.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="start" font-weight="normal">mod_jk child workerEnv in error state &lt;NUM&gt;</text>
+<rect x="250.0" y="122.0" width="25.3" height="16.0" fill="#2d7dd2"/>
+<text x="242.0" y="133.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">T3</text>
+<text x="281.3" y="133.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">32</text>
+<text x="256.0" y="133.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">[client &lt;IP&gt;] Directory index forbidden by ...</text>
+<rect x="250.0" y="144.0" width="9.5" height="16.0" fill="#2d7dd2"/>
+<text x="242.0" y="155.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">T4</text>
+<text x="265.5" y="155.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">12</text>
+<text x="256.0" y="155.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">jk2_init() Can&#x27;t find child &lt;NUM&gt; in scoreb...</text>
+<rect x="250.0" y="166.0" width="9.5" height="16.0" fill="#2d7dd2"/>
+<text x="242.0" y="177.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#5b6b7c" text-anchor="end" font-weight="normal">T5</text>
+<text x="265.5" y="177.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">12</text>
+<text x="256.0" y="177.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10" fill="#22313f" text-anchor="start" font-weight="normal">mod_jk child init &lt;NUM&gt; -&lt;NUM&gt;</text>
+</svg>
