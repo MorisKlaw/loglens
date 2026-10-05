@@ -48,8 +48,12 @@ def main(argv=None) -> int:
             print("跳过（文件不存在）: " + rel)
             continue
         out_dir = ROOT / args.out / name
+        try:
+            shown = str(out_dir.relative_to(ROOT))
+        except ValueError:
+            shown = str(out_dir)  # --out 指向仓库外时按绝对路径显示
         print("=" * 72)
-        print("处理 " + rel + " -> " + str(out_dir.relative_to(ROOT)))
+        print("处理 " + rel + " -> " + shown)
         result = run(
             RunConfig(
                 input_path=str(src),
