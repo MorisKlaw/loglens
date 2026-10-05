@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "loglens"
+version = "0.1.0"
+description = "让日志开口说话：轻量级日志解析、模板挖掘与异常检测（LogHub 最小实验）"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "loglens authors" }]
+keywords = ["log", "anomaly-detection", "log-parsing", "drain", "observability", "aiops"]
+dependencies = ["numpy>=1.24", "pandas>=2.0"]
+
+[project.optional-dependencies]
+png = ["Pillow>=9.0"]
+
+[project.scripts]
+loglens = "loglens.cli:main"
+
+[tool.setuptools]
+packages = ["loglens", "loglens.detectors"]
+
+[tool.setuptools.package-data]
+loglens = ["../README.md"]
