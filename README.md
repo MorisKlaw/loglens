@@ -167,6 +167,3 @@ loglens/
 ## 9 许可
 
 代码以 MIT 许可开源（见 LICENSE）；`data/` 下日志版权归原作者，遵循 LogHub 的使用要求。
-
-推送前建议自查三项：`python -m loglens selftest` 全绿、`python scripts/run_all.py` 能重跑出 results/、
-README 第 4 节的命令逐条可执行。
