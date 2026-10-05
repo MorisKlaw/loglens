@@ -33,7 +33,7 @@
 
 - 2k 样例没有标注，"检出 35 个窗口"无法证明准确。补注入式基准：注入 burst / novel / escalation 三类已知异常，按时间重叠判命中，算 P/R/F1 并做阈值扫描（docs/02 与 results/bench/bench_report.md 给出数字）。
 - 踩坑 6：沙箱环境下 tempfile 不可用。TemporaryDirectory 清理时要 chmod，mkdtemp 以 0700 建目录，两者都被拒绝。改为在仓库内用普通 mkdir 建临时目录（build_tmp/），并加进 .gitignore。
-- 补命令行自检：python -m loglens selftest 跑 45 个单元测试，全部通过。
+- 补命令行自检：python -m loglens selftest 跑单元测试，全部通过（复核后新增 5 个产物契约用例，合计 50 个）。
 - 补齐文档：数据集说明、方法调研、设计说明、一页异常报告、漏报误报分析、开发日志、日程记录；仓库初始化 git 并分阶段提交。
 - 独立复核（由另一位复核者只读审查）：逐条核对了文档数字与产物、证据行与源日志、命令可运行性，发现并修掉三处"证据链/可复现性"问题：
   1) 统计口径：泊松检验的 BH-FDR 原先只对粗筛后的子集校正，家族大小不等于实际检验次数，FDR 保证被削弱；改为对全部检验（HDFS 样例为 284 次）做 BH，再用 alpha 做第二道门限。

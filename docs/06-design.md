@@ -138,4 +138,4 @@
 - 参数全部落在 summary.json（detection.config），配合固定种子即可复现实验。
 - 解析口径可追溯：未识别的行标为 fallback 并沿用上一行时间戳，不静默丢数据。
 - 图表失败不影响主流程（try/except 包裹），保证报告一定生成。
-- 单元测试 45 个用例覆盖解析、模板、检测、融合、注入与评测逻辑，命令：python -m loglens selftest
+- 单元测试 50 个用例覆盖解析、模板、检测、融合、注入、评测与产物契约（证据行号 / FDR 家族大小 / 复现命令），命令：python -m loglens selftest

@@ -101,7 +101,7 @@ python -m loglens parse -i data/Zookeeper_2k.log --out zk_parsed.csv
 # 注入式基准评测：精确率 / 召回率 / F1 + 阈值扫描
 python -m loglens bench -o results/bench --repeat 2
 
-# 单元测试（45 个用例）
+# 单元测试（50 个用例）
 python -m loglens selftest
 ```
 
@@ -129,7 +129,7 @@ charts/（时间线、模板频次、级别分布；SVG + PNG）。完整说明�
 ```text
 loglens/
   loglens/            核心包：解析 / 模板 / 特征 / 检测 / 融合 / 报告 / 基准 / CLI
-  tests/              45 个单元测试（标准库 unittest，无第三方测试依赖）
+  tests/              50 个单元测试（标准库 unittest，无第三方测试依赖）
   data/               LogHub 四个 2k 样例 + 数据来源与引用说明
   docs/               00 数据集 · 01 方法调研 · 02 一页异常报告 · 03 漏报误报分析
                       04 开发日志 · 05 日程记录 · 06 设计说明
@@ -144,7 +144,7 @@ loglens/
 - 解析口径可追溯：未识别的行不会被丢弃，而是标记 fallback 并沿用上一行时间戳；解析率写入报告。
 - 基准评测固定随机种子，注入后的日志与真值标签一并保存在 `results/bench/injected/`。
 - 图表失败不影响主流程（异常被捕获），保证报告一定生成。
-- 速度（本机实测，Python 3.14 / numpy 2.3 / pandas 3.0）：单个 2000 行样例跑完「解析 → 模板 → 检测 → 图表 → 报告」约 2.7~3.9 秒；45 个单元测试约 3 秒。
+- 速度（本机实测，Python 3.14 / numpy 2.3 / pandas 3.0）：单个 2000 行样例跑完「解析 → 模板 → 检测 → 图表 → 报告」约 2.7~3.9 秒；50 个单元测试约 2 秒。
 
 ## 7 已知局限（详见 docs/03）
 
