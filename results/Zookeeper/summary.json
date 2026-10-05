@@ -1,7 +1,7 @@
 {
   "tool": "loglens",
   "version": "0.1.0",
-  "generated_at": "2026-10-06T00:44:49",
+  "generated_at": "2026-10-06T00:56:46",
   "input": "C:\\Users\\MorisKlaw\\Desktop\\dsh_work\\loglens\\data\\Zookeeper_2k.log",
   "parse": {
     "format": "zookeeper",

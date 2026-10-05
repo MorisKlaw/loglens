@@ -13,7 +13,7 @@
 - Apache：<https://zenodo.org/records/8196385/files/Apache.tar.gz?download=1>
 - Zookeeper：<https://zenodo.org/records/8196385/files/Zookeeper.tar.gz?download=1>
 
-**本仓库内 4 个 2k 样例**（行数、字节数均为本地文件实测；来源 URL 已发请求核对，返回 HTTP 200 且与本地文件逐行一致）：
+**本仓库内 4 个 2k 样例**（行数、字节数均为本地文件实测；来源 URL 已发请求核对（HTTP 200，抓取到的前缀与本地文件逐行一致；完整文件的核对以行数与字节数为准））：
 
 | 文件 | 行数 | 字节数 | 来源 URL |
 | --- | ---: | ---: | --- |

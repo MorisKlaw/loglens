@@ -217,7 +217,7 @@ def run(cfg: RunConfig) -> RunResult:
         + " --format " + parse_result.fmt
     )
     report = render_report(
-        source_path=str(cfg.input_path).replace("\\", "/"),
+        source_path=_relpath(cfg.input_path),
         title=title,
         parse_result=parse_result,
         features=features,

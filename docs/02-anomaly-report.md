@@ -36,7 +36,7 @@ L428 | 081110 103257 19 INFO dfs.FSDataset: Deleting block blk_-8898274302731129
 ### 样本 B（语义型，规则+统计）：DataNode 服务块异常
 
 - 窗口：2008-11-09 21:40 ~ 21:50，分数 3.10，检测器 rules + poisson + ewma
-- 判据：T8「Got exception while serving <BLK>」本桶 4 次 vs 基线 0.326 次（泊松 p = 1.26e-06，放大 18.4 倍）；规则 exception-traceback 命中；WARN 量越出控制限。模板 T8 的 80 条全部是 WARN，是该数据集里唯一的非 INFO 模板。
+- 判据：T8「Got exception while serving <BLK>」本桶 4 次 vs 基线 0.335 次（泊松 p = 4.01e-04，放大 11.9 倍，在 284 次检验中经 BH-FDR 校正后仍显著）；规则 exception-traceback 命中；WARN 量越出控制限。模板 T8 的 80 条全部是 WARN，是该数据集里唯一的非 INFO 模板。
 - 原始证据：
 ```text
 L78 | 081109 214043 2561 WARN dfs.DataNode$DataXceiver: 10.251.30.85:50010:Got exception while serving blk_-2918118818249673980 to /10.251.90.64:

@@ -7,7 +7,7 @@ name = "loglens"
 version = "0.1.0"
 description = "让日志开口说话：轻量级日志解析、模板挖掘与异常检测（LogHub 最小实验）"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "loglens authors" }]
 keywords = ["log", "anomaly-detection", "log-parsing", "drain", "observability", "aiops"]
@@ -22,5 +22,3 @@ loglens = "loglens.cli:main"
 [tool.setuptools]
 packages = ["loglens", "loglens.detectors"]
 
-[tool.setuptools.package-data]
-loglens = ["../README.md"]

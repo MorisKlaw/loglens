@@ -1,6 +1,6 @@
 # HDFS_2k 日志解析与异常检测报告
 
-> 自动生成于 2026-10-06 00:44:46 ｜ 工具 loglens v0.1.0 ｜ 数据文件 C:/Users/MorisKlaw/Desktop/dsh_work/loglens/data/HDFS_2k.log
+> 自动生成于 2026-10-06 00:56:44 ｜ 工具 loglens v0.1.0 ｜ 数据文件 data/HDFS_2k.log
 
 ## 0 结论速览
 
@@ -13,7 +13,7 @@
 
 | 指标 | 值 | 指标 | 值 |
 |---|---|---|---|
-| 文件 | C:/Users/MorisKlaw/Desktop/dsh_work/loglens/data/HDFS_2k.log | 格式 | hdfs（匹配率 1.000） |
+| 文件 | data/HDFS_2k.log | 格式 | hdfs（匹配率 1.000） |
 | 原始行数 | 2000 | 空行 | 0 |
 | 解析记录 | 2000 | 兜底行 | 0 |
 | 解析率 | 100.00% | 编码 | utf-8 |
