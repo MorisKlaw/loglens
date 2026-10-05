@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+build_tmp/
+.tmp/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# 运行产物（results/ 下已提交的报告与图表是实验证据，勿删）
+results/**/tmp/
+*.tmp
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
